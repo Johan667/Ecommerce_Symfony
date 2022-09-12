@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RaveShop - Mon compte{% endblock %}
+
+{% block content %}
+<h1>Mon Compte</h1>
+Bienvenue dans votre compte <b>{{ app.user.firstname }}</b> !<br>
+Ici vous pouvez modifier toutes les informations relatives à votre compte.<br>
+<hr>
+
+- <a href="{{ path('app_account_password') }}">Modifier Mot de passe</a><br>
+- Ajouter mes adresses<br>
+- Mes commandes<br>
+</hr>
+
+{% endblock %}
