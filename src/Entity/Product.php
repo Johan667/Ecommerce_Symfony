@@ -53,6 +53,21 @@ class Product
      */
     private $category;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $bestseller;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $new;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $promotion;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -138,6 +153,42 @@ class Product
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function isBestseller(): ?bool
+    {
+        return $this->bestseller;
+    }
+
+    public function setBestseller(bool $bestseller): self
+    {
+        $this->bestseller = $bestseller;
+
+        return $this;
+    }
+
+    public function isNew(): ?bool
+    {
+        return $this->new;
+    }
+
+    public function setNew(bool $new): self
+    {
+        $this->new = $new;
+
+        return $this;
+    }
+
+    public function isPromotion(): ?bool
+    {
+        return $this->promotion;
+    }
+
+    public function setPromotion(bool $promotion): self
+    {
+        $this->promotion = $promotion;
 
         return $this;
     }

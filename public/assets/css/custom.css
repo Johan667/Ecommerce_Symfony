@@ -1,12 +1,194 @@
+body{
+    box-sizing: border-box;
+    margin: auto;
+}
+
+
 /* Accueil */
-.navbar-item-custom,.navbar-item-custom a{
+
+/* Header */
+header{
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+
+}
+header nav{
+    display:flex;
+    justify-content:space-around;
+    align-items: center;
+    background-color: black;
+}
+header .logo{
+    max-width: 66px;
+} 
+header nav ul{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding-left: 0px;
+}
+header nav ul li a{
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    padding-right: 25px;
+    padding-bottom: 2px;
+}
+header nav ul li a:hover{
+    color: orange;
+    transition: all 0.3s ease-in;
+}
+
+@media screen and (min-width:820px) {
+    #burger{
+        display:none;
+    }
+
+}
+
+@media screen and (max-width:820px) {
+    header nav{
+        flex-wrap: wrap;
+    }
+    header nav ul{
+        display:none;
+        flex-direction:column;
+        height:250px;
+        justify-content: space-evenly;
+    }
+    header nav div{
+        display:flex;
+        justify-content:space-around;
+        align-items:center;
+        width:100%;
+    }
+    #burger{
+        display:block;
+    }
+}
+/* END HEADER */
+
+/* MAIN */
+#img-accueil{
+    display:flex;
+    width: 100%;
+    height: auto;
+}
+.title-h2{
+    text-align: center;
+    font-style: italic;
+}
+#p-home{
+    text-align: center;
+    color: orange;
+}
+
+/* Login */
+
+.block-small{
+    max-width: 600px;
+    margin:0 auto;
+
+}
+
+/* Nos Produits */
+
+.product-container{
+    margin-bottom: 150px;
+}
+
+.product-item{
+    margin-top: 50px;
+}
+.product-item h5{
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-bottom: 1px;
+}
+
+.product-item .product-subtitle{
+    font-size: 14px;
+    display: block;
+    margin-bottom: 10px;
+}
+.product-item .product-price{
+font-size: 14px;
+display: block;
+font-weight: bold;
+}
+
+/* Fiche produit */
+
+.product-show-price{
+    font-size: 20px;
+}
+.similary{
+    margin-bottom: 125px;
+}
+
+/* Récapitulatif Commande */
+.form-check{
+    background-color: color #dfeaff1f;
+    padding: 20px 65px;
+    margin-top:7px;
+}
+.col-form-label{
+    font-weight: bold;
+}
+.order-summary{
+    background-color: color #dfeaff;
+    padding:20px;
+    margin-top:22px;
+}
+
+/* Footer */
+
+/* --- FOOTER --- */
+
+.container-footer{
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    text-align: center;
+    color: white;
+    height: 150px;
+    margin-bottom: 0;
+    position: relative;
+  
+  }
+#logo a{
     color:white;
 }
-.footer-custom{
-    text-align: center;
-    position: fixed;
-    bottom:0;
-    width:100%;
-    background-color: rgba(0, 0, 0, 0.189);
-    padding-top: 2rem;
+  
+ 
+#list-footer ul li{
+    list-style-type: none;
+    text-decoration: none;
+  }
+#list-footer ul li a{
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
 }
+  
+  .social{
+    margin-bottom: 10px;
+  }
+  .social a{
+    text-decoration: none;
+    color:white;
+    font-weight: bold;
+  }
+  
+  @media screen and (min-width: 950px){
+    .container-footer{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 150px;
+      padding: 10px;
+      bottom:0;
+    }
+  }

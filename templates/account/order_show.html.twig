@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RaveShop - Ma commande
+{% endblock %}
+
+{% block content %}
+<h1>Ma commande n°<small>{{ order.reference }}</small></h1>
+<a href="{{ path('app_account_order')}}">Retour</a>
+
+<hr>
+
+<strong>Commande effectué le :</strong> {{ order.createdAt|date('d/m/Y')}}<br>
+<strong>Statut de la commande:</strong> 
+         {% if order.state == 1 %}
+          <span class="badge badge-primary">Paiement Accepté</span>
+          {% elseif order.state == 2 %}
+          <span class="badge badge-secondary">En cours de préparation</span>
+          {% elseif order.state == 3 %}
+          <span class="badge badge-success">En cours de livraison</span>
+          {% endif %}
+          <br>
+<strong>Référence de la commande :</strong> {{ order.reference }}<br>
+<strong>Transporteur choisi :</strong>{{ order.careerName }}<br>
+<hr>
+<strong>Détails </strong><br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Produit</th>
+      <th scope="col">Quantité</th>
+      <th scope="col">Prix Unitaire</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for product in order.orderDetails %}
+    <tr>
+      <th scope="row">{{ product.product }}</th>
+      <td>x {{ product.quantity }}</td>
+      <td>{{ (product.price / 100)|number_format(2,',','.') }} €</td>
+      <td>{{ (product.total / 100)|number_format(2,',','.') }} €</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<div class="text-right">
+<strong>Sous-Total :</strong> {{ (order.gettotal / 100)|number_format(2,',','.') }} €<br>
+<strong>Livraison :</strong> {{ (order.carrerprice / 100)|number_format(2,',','.') }} €<br>
+<strong>Total :</strong> {{   ((order.getTotal + order.carrerPrice) / 100)|number_format(2,',',',') }} €
+</div>
+
+<div class="similary"></div>{% endblock %}

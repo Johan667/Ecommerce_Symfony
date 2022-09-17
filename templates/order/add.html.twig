@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block javascript %}
+    <script src="https://js.stripe.com/v3/"></script>
+     <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+{% endblock %}
+{% block title %}RaveShop - Valider ma commande{% endblock %}
+
+{% block content %}
+<h2>RaveShop - Commande</h2>
+<hr>
+<div class="row">
+    <div class="col-md-6">
+        <strong>Mon adresse de livraison</strong><br>
+        <div class="form-check">
+            {{ delivery| raw }}
+        </div>
+        <hr>
+        <strong> Mon Transporteur</strong><br>
+        <div class="form-check mt-2">
+            {{ career.name }}<br>
+            {{ career.description }}<br>
+            {{ (career.price / 100)| number_format(2, ',','.') }} €
+        </div>
+
+    </div>
+    <div class="col-md-6">
+        <div class="text-center">
+            <b>Récapitulatif de ma commande</b><br>
+            <p>Retrouvez le récapitulatif de vos produits<p>
+        </div>
+        <div class="order-summary">
+            {% set total = null %}
+            {% for key, product in cart %}
+            <div class="row">
+                <div class="col-2">
+                    <img src="/uploads/{{ product.product.illustration }}" alt="{{ product.product.name }}"
+                        height="100px">
+                </div>
+                <div class="col-8 my-auto">
+                    <b>{{ product.product.name }}</b><br>
+                    <small>{{ product.product.description }}
+                        <br>
+                        x {{ product.quantity }}
+                    </small>
+                </div>
+
+                <div class="col-2">
+                    {{ ((product.product.price * product.quantity ) / 100) | number_format(2, ',','.') }} €
+                </div>
+
+                {% set total = total + (product.product.price * product.quantity) %}
+                {% endfor %}
+            </div>
+            <div class="col-6 mt-3 float-right">
+            <strong>Sous-Total: </strong>{{ (total / 100) | number_format(2, ',','.') }} €<br>
+            <strong>Livraison: </strong>{{ (career.price / 100) | number_format(2, ',','.') }} €<br>
+
+
+            <strong>Total: </strong>{{ ((total / 100) + (career.price / 100))| number_format(2, ',','.') }} €<br>
+            </div>
+
+            <a href="{{ path('stripe_create_session', {'reference': reference}) }}" class="btn btn-success btn-block mt-3" id="checkout-button">Payer | <b>{{ ((total / 100) + (career.price / 100))| number_format(2, ',','.') }} €</b></a>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="similary">
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+    var stripe = Stripe('sk_test_51L6amqAgDjI611jf49n3RURuEVn6KbawPxt0CKby4wsENM9plWmKeqkq7Cm3Sl1W4JcvjewbvVCBrwyA5knu6b2500QdV5lalL');
+    var checkoutButton = document.getElementById("checkout-button");
+
+    checkoutButton.addEventListener("click", function ()){
+        fetch("{{ path('stripe_create_session', {'reference': reference}) }}", {
+        method: "POST",
+
+    })
+        .then(function(session){
+            if(!session.error == 'order'){
+                // redirection
+                window.location.replace('{{ path('app_order')}}')
+            }else{
+            return stripe.redirectToCheckout({ sessionId : session.id});
+            }
+        })
+        .then(function(result){
+            if(results.error){
+                alert(result.error.message);
+            }
+        })
+        .catch(function(error){
+            console.error("Error:",error);
+        });
+});
+</script>
+
+{% endblock %}

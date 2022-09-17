@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RaveShop - Mes commandes{% endblock %}
+
+{% block content %}
+<h1>Mes commandes</h1>
+Ici vous pouvez voir toutes les informations relatives à vos commandes.<br>
+<a href="{{ path('app_account_address')}}">Retour</a>
+
+{% if orders| length == 0 %}
+<hr>
+{#} Si dans l'objet user il n'y à pas d'adresse {#}
+{#} app est une variable qui stocke une multitude d'informations sur les sessions les users ...{#}
+<p class="text-center">
+  Vous n'avez pas encore passé de commande
+</p>
+{% else %}
+
+
+<table class="table mt-3">
+  <thead>
+    <tr>
+      <th scope="col">Référence</th>
+      <th scope="col">Statut</th>
+      <th scope="col">Effectué le</th>
+
+      <th scope="col">Produits</th>
+      <th scope="col">Total</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in orders %}
+      <tr>
+        <td><span class="badge badge-secondary">{{ order.reference }}</span></td>
+        <td>
+          {% if order.state == 1 %}
+          <span class="badge badge-primary">Paiement Accepté</span>
+          {% elseif order.state == 2 %}
+          <span class="badge badge-secondary">En cours de préparation</span>
+          {% elseif order.state == 3 %}
+          <span class="badge badge-success">En cours de livraison</span>
+          {% endif %}
+        </td>
+        <td>{{ order.createdAt | date('d/m/Y')}}</td>
+        <td>{{ order.orderDetails | length }}</td>
+        <td>{{   ((order.getTotal + order.carrerPrice) / 100)|number_format(2,',',',') }} €</td>
+        <td class="text-right"><a href="{{ path('app_account_order_show', { 'reference': order.reference })}}"><i class="fa fa-search"></i> Détails</a></td>
+      </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+</div>
+
+{% endif %}
+<div class="similary">
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RaveShop - Ajouter une adresse{% endblock %}
+
+{% block content %}
+<h1>Ajouter une adresse</h1>
+
+<a href="{{ path('app_account_address')}}">Retour</a>
+<hr>
+{{ form_start(formAddress)}}
+<div class="row">
+    <div class="col-md-12">{{ form_row(formAddress.name)}}</div>
+
+    <div class="col-md-6">{{ form_row(formAddress.firstname)}}</div>
+    <div class="col-md-6">{{ form_row(formAddress.lastname)}}</div>
+
+    <div class="col-md-6">{{ form_row(formAddress.phone)}}</div>
+    <div class="col-md-6">{{ form_row(formAddress.company)}}</div>
+
+    <div class="col-md-6">{{ form_row(formAddress.address)}}</div>
+    <div class="col-md-6">{{ form_row(formAddress.postal)}}</div>
+    <div class="col-md-6">{{ form_row(formAddress.city)}}</div>
+    <div class="col-md-6">{{ form_row(formAddress.country)}}</div>
+
+    <div class="col-md-12">{{ form_row(formAddress.submit)}}</div>
+
+    {{ form_end(formAddress)}}
+</div>
+
+<div class="similary">
+</div>
+{% endblock %}

@@ -44,11 +44,11 @@ class RegisterController extends AbstractController
                         $registerForm->get('password')->getData())
                 );
             // On hash le mot de passe grace à UserPasswordInterface
-        }
-        $this->entityManager->persist($user);
-        $this->entityManager->flush($user);
-        // persit = fige la donnée
+            $this->entityManager->persist($user);
+            $this->entityManager->flush($user);
+            // persit = fige la donnée
         // flush = execute, et enregistre en bdd
+        }
 
         return $this->render('register/index.html.twig', [
             // Je passe ma variable en template sous forme de tableau
