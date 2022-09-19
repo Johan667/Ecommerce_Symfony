@@ -60,6 +60,7 @@ class OrderRepository extends ServiceEntityRepository
                 ->getResult();
         // Obtenir les resultats
     }
+}
 
 //    /**
 //     * @return Order[] Returns an array of Order objects
@@ -84,5 +85,4 @@ class OrderRepository extends ServiceEntityRepository
 //            ->getQuery()
 //            ->getOneOrNullResult()
 //        ;
-//    }
-}
+//

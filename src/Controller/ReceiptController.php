@@ -25,6 +25,7 @@ class ReceiptController extends AbstractController
     public function index($reference): Response
     {
         $order = $this->entityManager->getRepository(Order::class)->findOneByReference($reference);
+
         // Configure Dompdf
         $pdfOptions = new Options();
         $pdfOptions->set('defaultFont', 'Arial');
@@ -35,34 +36,28 @@ class ReceiptController extends AbstractController
         $dompdf->getOptions()->setChroot('assets/css/pdf.css');
 
         // Retrouve la vue HTML pour ma facture
-        $html = $this->renderView("/compte/mes-commandes/'.$reference.'");
-        dd($html);
-        // // Load HTML to Dompdf
-        // $dompdf->loadHtml($html);
+        $html = $this->renderView('/account/receipt.html.twig', [
+            'order' => $order,
+        ]);
 
-        // // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
-        // $dompdf->setPaper('A4', 'portrait');
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
 
-        // // Render the HTML as PDF
-        // $dompdf->render();
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
 
-        // $dompdf->stream();
+        // Render the HTML as PDF
+        $dompdf->render();
 
-        // // // Store PDF Binary Data
-        // // $output = $dompdf->output();
+        $dompdf->stream();
 
-        // // // In this case, we want to write the file in the public directory
-        // // $publicDirectory = '/public/asssets/pdf/';
-        // // // e.g /var/www/project/public/mypdf.pdf
-        // // $pdfFilepath = $publicDirectory.'facture'.$commande.'.pdf';
-
-        // // // Write file to the desired path
-        // // file_put_contents($pdfFilepath, $output);
+        // // Store PDF Binary Data
+        $output = $dompdf->output();
 
         // // Send some text response
         return $this->render('account/receipt.html.twig', [
             'order' => $order,
-            'info' => $info,
+            'html' => $html,
         ]);
     }
 }

@@ -40,7 +40,7 @@
       <td>x {{ product.quantity }}</td>
       <td>{{ (product.price / 100)|number_format(2,',','.') }} €</td>
       <td>{{ (product.total / 100)|number_format(2,',','.') }} €</td>
-      <td><a href="{{ path('app_receipt', { 'id': order.id })}}">Imprimer ma facture</a></td>
+      <td><a href="{{ path('app_receipt', { 'reference': order.reference })}}">Imprimer ma facture</a></td>
     </tr>
   {% endfor %}
   </tbody>
