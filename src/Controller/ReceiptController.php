@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Order;
-use App\Entity\OrderDetails;
 use Doctrine\ORM\EntityManagerInterface;
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -21,10 +20,11 @@ class ReceiptController extends AbstractController
     }
 
     /**
-     * @Route("/receipt/{id}", name="app_receipt")
+     * @Route("/receipt/{reference}", name="app_receipt")
      */
-    public function index($id): Response
+    public function index($reference): Response
     {
+        $order = $this->entityManager->getRepository(Order::class)->findOneByReference($reference);
         // Configure Dompdf
         $pdfOptions = new Options();
         $pdfOptions->set('defaultFont', 'Arial');
@@ -33,15 +33,10 @@ class ReceiptController extends AbstractController
         $dompdf = new Dompdf($pdfOptions);
 
         $dompdf->getOptions()->setChroot('assets/css/pdf.css');
-        $order = $this->entityManager->getRepository(OrderDetails::class)->findOneById($id);
-        $info = $this->entityManager->getRepository(Order::class)->findOneById($this->getUser());
 
-        // dd($info);
         // Retrouve la vue HTML pour ma facture
-        // $html = $this->renderView('account/receipt.html.twig', [
-        //     'order' => $order,
-        // ]);
-
+        $html = $this->renderView("/compte/mes-commandes/'.$reference.'");
+        dd($html);
         // // Load HTML to Dompdf
         // $dompdf->loadHtml($html);
 
