@@ -18,7 +18,7 @@ body {
     color:white;
     text-decoration: none;
 }
-.texte_center a:hover {
+.texte_centrer a:hover {
     color: orange;
     transition: all 0.3s ease-in;
 }

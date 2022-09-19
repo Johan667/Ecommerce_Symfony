@@ -67,4 +67,17 @@ class ProductController extends AbstractController
             // products avec un 's' sera tous les bestseller
         ]);
     }
+
+    /**
+     * @Route("/produit/categorie/{id}", name="produit_categorie")
+     */
+    public function AfficherCategorie($id): Response
+    {
+        $products = $this->entityManager->getRepository(Product::class)->findByCategory($id);
+        // dd($products);
+
+        return $this->render('product/category.html.twig', [
+            'products' => $products,
+        ]);
+    }
 }

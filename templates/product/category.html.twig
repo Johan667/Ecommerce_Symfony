@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RaveShop - Nos produits{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-9">
+
+        <div class="row product-container">
+            {% for product in products %}
+        {# <h2> {{products.product.category.name }} </h2>  #}
+            {#}Pour chaque produit dans le tableau des produits {#}
+            <div class="col-md-4">
+                {% include 'product/single_product.html.twig' %}
+            </div>
+    {% endfor %}
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}
