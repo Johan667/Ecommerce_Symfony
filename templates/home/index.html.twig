@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 {% block carousel %}{% endblock %}
 {% block content %}
+
+<div class="contenant">
 <img id="img-accueil" src="{{ asset('assets/img/accueil4.jpg')}}" alt="Nouveauté">
+  <div class="texte_centrer"><a href="{{ path('products')}}">Boutique</a></div>
+</div>
 <h2 class="title-h2">Nos nouveautés</h2>
 <p id="p-home"> Découvrez les articles sortie récemment<p>
         <table id="new">

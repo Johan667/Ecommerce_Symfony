@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ asset("assets/css/pdf.css") }}">
+        <title>Facture référence n° </title>
+    </head>
+    <body>
+        <div id="top">
+            <h1>FACTURE</h1>
+            <img src="{{ asset("assets/img/logo.png") }}" alt="logo">
+        </div>
+
+        <p id="head">A l'attention de {{ info.user.firstname ~ " " ~ info.user.lastname }}</p>
+
+        <div id="infoFactu">
+            <div>
+                <strong>Facturé à</strong>
+                <p>
+{{ info.user.firstname }}<br>
+{{ info.user.lastname }}<br>
+                </p>
+            </div>
+
+            <div>
+                <strong>Envoyé à</strong>
+                <p>
+                {{ info.delivery |raw }}<br>
+               <br>
+
+                </p>
+            </div>
+                        <div>
+                <strong>Livré par</strong>
+                <p>
+                {{ info.careerName }}<br>
+                {{ info.carrerPrice }} €<br>
+               <br>
+
+                </p>
+            </div>
+
+            <div>
+                <p>
+                    Référence commande : <br>
+                    Payé le  : {{ info.createdAt|date('d-m-Y') }}
+                </p>
+            </div>
+        </div>
+
+            <table class="table-recap">
+                <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                {% set total = 0 %}
+                <tbody>
+<tr>
+<td>{{ order.product }}</td><br>
+<td></td><br>
+<td>{{ order.quantity}}</td><br>
+<td>{{ order.total / 100 }} €</td><br>
+</tr>
+                </tbody>
+            </table>
+    <div id="right">
+<strong>Sous-Total :</strong> {{ (order.gettotal / 100)|number_format(2,',','.') }} €<br>
+<strong>Livraison :</strong> {{ info.carrerPrice }} €<br>
+<strong>Total :</strong> {{   ((order.gettotal / 100) + info.carrerPrice)|number_format(2,',',',') }} €
+    </diV>
+
+    <h2>MERCI</h2>
+
+    </body>
+</html>
+

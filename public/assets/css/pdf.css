@@ -1,0 +1,45 @@
+p, strong{
+    font-size: 18px;
+}
+#infoFactu, #top{
+    display: flex;
+    justify-content: space-around;
+}
+body{
+    max-width: 1000px;
+    margin: auto;
+}
+td{
+    text-align: center;
+}
+img{
+    height:150px;
+    width:120px;
+}
+#head{
+    font-weight: bold;
+}
+.table-recap{
+    width: 100%;
+    margin-bottom: 2rem;
+}
+.table-recap thead{
+    background-color: rgb(0, 0, 0);
+    height: 2em;
+    color: white;
+}
+.table-recap tbody tr:nth-child(even) {
+    background-color: rgb(233, 233, 233);
+}
+.table-recap tbody tr td:first-child{
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+}
+h2{
+    text-align:center;
+}
+#right{
+    text-align:right;
+
+}
