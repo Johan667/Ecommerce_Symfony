@@ -2,12 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Address;
 use App\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -23,13 +23,13 @@ class LegalController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $mail = (new Email())
             ->from($form->get('email')->getData())
-            ->to(new Address('johan.kasri@icloud.com', 'Admin Raveur'))
+            ->to(new Address('johan.kasri@icloud.com', 'Admin RaveShop'))
             ->subject($form->get('objet')->getData())
             ->text($form->get('message')->getData())
             ;
 
             $mailer->send($mail);
-            // $this->addFlash('sucess', 'Votre demande à bien été prise en compte nous y repondrons au plus tard 48 heures après votre demande!');
+            $this->addFlash('sucess', 'Votre demande à bien été prise en compte nous y repondrons au plus tard 48 heures après votre demande!');
 
             return $this->redirectToRoute('app_home');
         }

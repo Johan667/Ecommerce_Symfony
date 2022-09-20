@@ -3,24 +3,23 @@
 {% block title %}Contact{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-6">
-        <h2> Contactez nous </h2>
-        {{ form_start(form) }}
-        <div>
-            {{ form_label(form.email) }}<br>
-            {{ form_widget(form.email) }}
-        </div>
-        <div>
-            {{ form_label(form.objet) }}<br>
-            {{ form_widget(form.objet) }}
-        </div>
-        <div>
-            {{ form_label(form.message) }}<br>
-            {{ form_widget(form.message) }}
-        </div>
-        {{ form_end(form) }}
+<div class="block-small">
+    <h2> Contactez nous </h2>
+    {{ form_start(form) }}
+    <div>
+        {{ form_label(form.email) }}<br>
+        {{ form_widget(form.email) }}
     </div>
+    <div>
+        {{ form_label(form.objet) }}<br>
+        {{ form_widget(form.objet) }}
+    </div>
+    <div>
+        {{ form_label(form.message) }}<br>
+        {{ form_widget(form.message) }}
+    </div>
+    {{ form_end(form) }}
 </div>
-</div>
+
+
 {% endblock %}
