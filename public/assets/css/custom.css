@@ -25,6 +25,12 @@
     color: orange;
     transition: all 0.3s ease-in;
 }
+.img-categorie{
+    display: flex;
+    width: 100%;
+    height: auto;
+
+}
 
 /* Header */
 header {
@@ -117,6 +123,18 @@ header nav ul li a:hover {
     width: 100%;
     height: auto;
 }
+#background-video {
+    display:flex;
+    height: 900px;
+    width: 100%;
+    object-fit: cover;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 0;
+    position:relative;
+  }
 
 .title-h2 {
     text-align: center;
