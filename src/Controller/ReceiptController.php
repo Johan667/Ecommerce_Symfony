@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Order;
+use App\Entity\OrderDetails;
 use Doctrine\ORM\EntityManagerInterface;
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -24,7 +25,9 @@ class ReceiptController extends AbstractController
      */
     public function index($reference): Response
     {
-        $order = $this->entityManager->getRepository(Order::class)->findOneByReference($reference);
+        $order = $this->entityManager->getRepository(Order::class)->findOneById($reference);
+        $orderDetails = $this->entityManager->getRepository(OrderDetails::class);
+        // dd($orderDetails);
 
         // Configure Dompdf
         $pdfOptions = new Options();

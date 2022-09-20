@@ -3,12 +3,13 @@
 {% block title %}RaveShop - Mon compte{% endblock %}
 
 {% block content %}
-<h1>Mon Compte</h1>
+<div class="wrapper">
+<h1 class="text-center mt-3 ">Mon Compte</h1>
 {% if is_granted('ROLE_ADMIN') %}
 <small><a href="{{ path('admin')}}">Vous êtes administrateur, cliquez ici pour accéder au back-office</a></small><br>
 {% endif %}
-Bienvenue dans votre compte <b>{{ app.user.firstname }}</b> !<br>
-Ici vous pouvez modifier toutes les informations relatives à votre compte.<br>
+<p class="text-center mt-3">Bienvenue dans votre compte <b>{{ app.user.firstname }}</b> !<br>
+Ici vous pouvez modifier toutes les informations relatives à votre compte.</p><br>
 <hr>
 <div class="row">
     <div class="col-md-4">
@@ -23,6 +24,7 @@ Ici vous pouvez modifier toutes les informations relatives à votre compte.<br>
 </div>
 
 </hr>
+</div>
 <div class="similary">
 </div>
 

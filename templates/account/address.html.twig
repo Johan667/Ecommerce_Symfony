@@ -3,7 +3,8 @@
 {% block title %}RaveShop - Mes adresses{% endblock %}
 
 {% block content %}
-<h1>Mes adresses</h1>
+<div class="wrapper mt-3">
+<h1 class="text-center">Mes adresses</h1>
 <a href="{{ path('app_account_address_add')}}" class="btn btn-info btn-sm float-right">Ajouter une adresse</a>
 Ici vous pouvez modifier toutes les informations relatives à vos adresses.<br>
 <a href="{{ path('app_account_address')}}">Retour</a>
@@ -36,6 +37,7 @@ Ici vous pouvez modifier toutes les informations relatives à vos adresses.<br>
 </div>
 
 {% endif %}
+</div>
 <div class="similary">
 </div>
 {% endblock %}

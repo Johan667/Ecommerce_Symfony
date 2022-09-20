@@ -5,9 +5,12 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegisterType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -23,7 +26,7 @@ class RegisterController extends AbstractController
     /**
      * @Route("/inscription", name="app_register")
      */
-    public function index(Request $request, UserPasswordHasherInterface $encoder): Response
+    public function index(MailerInterface $mailer, Request $request, UserPasswordHasherInterface $encoder): Response
     // Injection de dépendance -> On demande à la fonction index d'embarquer le/les objet(s) donné en paramètre
     {
         $user = new User();
@@ -47,7 +50,15 @@ class RegisterController extends AbstractController
             $this->entityManager->persist($user);
             $this->entityManager->flush($user);
             // persit = fige la donnée
-        // flush = execute, et enregistre en bdd
+            // flush = execute, et enregistre en bdd
+            $mail = (new TemplatedEmail())
+        ->to($registerForm->get('email')->getData())
+        ->from(new Address('johan.kasri@icloud.com', 'Admin RaveShop'))
+        ->subject("RaveShop - Confirmation D'inscription")
+        ->htmlTemplate('email/register.html.twig')
+        ;
+            $mailer->send($mail);
+            $this->addFlash('notice', 'Merci pour votre inscription ! ');
         }
 
         return $this->render('register/index.html.twig', [

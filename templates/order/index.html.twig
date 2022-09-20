@@ -3,6 +3,7 @@
 {% block title %}RaveShop - Valider ma commande{% endblock %}
 
 {% block content %}
+<div class="wrapper">
 <h2>Je passe ma commande</h2>
 <p>Choissisez vos préférences avant de passer commande !</p>
 <hr>
@@ -19,7 +20,7 @@
         {#} Remplace les [br] dans le __tooString de order par des <br>
          pour plus d'esthetique, raw pour interpréter le html {#}
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 mt-0">
         <div class="text-center">
             <b>Récapitulatif de ma commande</b><br>
             <p>Retrouvez le récapitulatif de vos produits<p>
@@ -46,10 +47,6 @@
             </div>
         </div>
     </div>
-
-    <div class="similary">
-    </div>
-    <div class="similary">
-    </div>
 </div>
+
     {% endblock %}

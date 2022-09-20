@@ -1,6 +1,10 @@
-body {
+* {
     box-sizing: border-box;
     margin: auto;
+}
+
+.wrapper{
+    max-width: 1300px;
 }
 
 
@@ -136,6 +140,7 @@ header nav ul li a:hover {
 
 .product-container {
     margin-bottom: 150px;
+    max-width: 1000px;
 }
 
 .product-item {
@@ -191,10 +196,10 @@ header nav ul li a:hover {
 }
 
 /* Récapitulatif Commande */
-.form-check {
-    background-color: color #dfeaff1f;
+.form-check{
     padding: 20px 65px;
     margin-top: 7px;
+    box-shadow: 0px 0px 2px 1px orange;
 }
 
 .col-form-label {
