@@ -87,62 +87,73 @@
 
 <body>
 
-        <header>
-            <nav>
-                <div>
-                    <a href="{{ path('app_home') }}"><img src="{{ asset('assets/img/logo.png')}}" alt="logo"
-                            class="logo"></a>
-                    <i class="fa-solid fa-bars fa-2xl dnone" id="burger"></i>
-                </div>
-                <ul id="menu1">
-                    <li><a href="{{ path('products')}}">Boutique</a></li>
-                    <li><a href="{{ path('app_cart')}}"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
-                </ul>
-                <ul id="menu2">
-                    {% if not app.user %}
-                    <li><a href="{{ path('app_login') }}">Connexion</a></li>
-                    <li><a href="{{ path('app_register') }}">S'enregistrer</a></li>
-                    {% else %}
-                    {% if is_granted("ROLE_ADMIN") %}
-                    <li><a href="{{ path('admin') }}">ADMIN</a></li>
-                    {% endif %}
-                    <li><a href="{{ path('app_account') }}">Mon compte</a></li>
-                    <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
-
-                    {% endif %}
-                </ul>
-            </nav>
-        </header>
-        <main>
-
-                {% block content %}{% endblock %}
-
-        </main>
-        <!-- FOOTER -->
-        <footer>
-            <div class="container-footer">
-                <span class="logo"> <a href="{{ path('app_home')}}" title="Raveshop">RaveShop</a></span>
-
-                <div id="list-footer">
-                    <ul>
-                        <li> <a href="{{ path('app_contact')}}" alt="Contact">Contact</a></li>
-                        <li> <a href="{{ path('mentions')}}" alt="Mentions légale">Mentions légale</a></li>
-                        <li> <a href="{{ path('confidentialite')}}">Condition générale d'utilisation </a></li>
-                        </li>
-
-                    </ul>
-                </div>
-                <div class="social">
-                    <a target="_blank" href="https://www.facebook.com/" alt="Facebook"><i
-                            class="fa-brands fa-facebook"></i></a>
-                    <a target="_blank" href="https://www.instagram.com/" alt="Instagram"><i
-                            class="fa-brands fa-instagram"></i></a>
-                </div>
-                <div id="copyright">
-                    © RaveShop
-                </div>
+    <header>
+        <nav>
+            <div>
+                <a href="{{ path('app_home') }}"><img src="{{ asset('assets/img/logo.png')}}" alt="logo"
+                        class="logo"></a>
+                <i class="fa-solid fa-bars fa-2xl dnone" id="burger"></i>
             </div>
-        </footer>
+            <ul id="menu1">
+                <li><a href="{{ path('products')}}">Boutique</a></li>
+                <li><a href="{{ path('app_cart')}}"><i class="fa-solid fa-basket-shopping"></i></a></li>
+            </ul>
+            <ul id="menu2">
+                {% if not app.user %}
+                <li><a href="{{ path('app_login') }}">Connexion</a></li>
+                <li><a href="{{ path('app_register') }}">S'enregistrer</a></li>
+                {% else %}
+                {% if is_granted("ROLE_ADMIN") %}
+                <li><a href="{{ path('admin') }}">ADMIN</a></li>
+                {% endif %}
+                <li><a href="{{ path('app_account') }}">Mon compte <small>({{ app.user.firstname }})</small></a></li>
+                <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+
+        {% block content %}{% endblock %}
+
+    </main>
+    <!-- FOOTER -->
+    <footer>
+        <div class="container-footer">
+            <span class="logo"> <a href="{{ path('app_home')}}" title="Raveshop"><img
+                        src="{{ asset('assets/img/logo.png')}}" alt="logo" height="50px" width="50px"></a></span>
+
+            <div id="list-footer">
+                <ul>
+                    <li> <a href="{{ path('app_contact')}}" alt="Contact">Contact</a></li>
+                </ul>
+            </div>
+            <div id="list-footer">
+                <ul>
+                    <li> <a href="{{ path('mentions')}}" alt="Mentions légale">Mentions légale</a></li>
+                </ul>
+            </div>
+            <div id="list-footer">
+                <ul>
+                    <div id="list-footer">
+                        <ul>
+                            <li> <a href="{{ path('confidentialite')}}" alt="Politique de cofidentialité">Politique de cofidentialité</a></li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+            <div class="social">
+                <a target="_blank" href="https://www.facebook.com/" alt="Facebook"><i
+                        class="fa-brands fa-facebook"></i></a>
+                <a target="_blank" href="https://www.instagram.com/" alt="Instagram"><i
+                        class="fa-brands fa-instagram"></i></a>
+            </div>
+            <div id="copyright">
+                © 2022, RAVESHOP  <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+        </div>
+    </footer>
 
 
 </body>

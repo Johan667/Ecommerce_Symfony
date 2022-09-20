@@ -4,13 +4,24 @@
 
 {% block content %}
 <h1>Mon Compte</h1>
+{% if is_granted('ROLE_ADMIN') %}
+<small><a href="{{ path('admin')}}">Vous êtes administrateur, cliquez ici pour accéder au back-office</a></small><br>
+{% endif %}
 Bienvenue dans votre compte <b>{{ app.user.firstname }}</b> !<br>
 Ici vous pouvez modifier toutes les informations relatives à votre compte.<br>
 <hr>
+<div class="row">
+    <div class="col-md-4">
+        <div class="account-item"><a href="{{ path('app_account_password') }}"><i class="fa-solid fa-unlock"></i> Modifier mon mot de passe</a></div>
+    </div>
+    <div class="col-md-4">
+        <div class="account-item"><a href="{{ path('app_account_address') }}"><i class="fa-solid fa-house-user"></i> Modifier mes adresses</a></div>
+    </div>
+    <div class="col-md-4">
+        <div class="account-item"><a href="{{ path('app_account_order') }}"><i class="fa-solid fa-bag-shopping"></i> Mes commandes</a></div>
+    </div>
+</div>
 
-- <a href="{{ path('app_account_password') }}">Modifier mon mot de passe</a><br>
-- <a href="{{ path('app_account_address') }}">Modifier mes adresses</a><br>
-- <a href="{{ path('app_account_order') }}">Mes commandes</a><br>
 </hr>
 <div class="similary">
 </div>

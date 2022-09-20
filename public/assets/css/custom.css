@@ -8,7 +8,6 @@ body {
 
 .texte_centrer {
     position: absolute;
-
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -48,6 +47,7 @@ header nav ul {
     display: flex;
     align-items: center;
     padding-left: 0px;
+
 }
 
 header nav ul li a {
@@ -61,7 +61,18 @@ header nav ul li a {
 header nav ul li a:hover {
     color: orange;
     transition: all 0.3s ease-in;
+    text-decoration: none;
 }
+.fa-facebook{
+    color: #3b5998;
+}
+.fa-instagram{
+    color: #8a3ab9;
+}
+.fa-heart-pulse{
+    color: red;
+}
+
 
 @media screen and (min-width:820px) {
     #burger {
@@ -148,6 +159,26 @@ header nav ul li a:hover {
     display: block;
     font-weight: bold;
 }
+/* Mon compte */
+.account-item{
+
+    background-color: #f1f2f6;
+    padding: 75px;
+    text-align: center;
+
+}
+.account-item a{
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #4b5884;
+    font-weight: bolder;
+}
+.account-item a:hover{
+    text-transform: uppercase;
+    color: orange;
+    font-weight: bolder;
+    text-decoration: none;
+}
 
 /* Fiche produit */
 
@@ -192,19 +223,18 @@ header nav ul li a:hover {
 
 }
 
-#logo a {
-    color: white;
-}
+
 
 
 #list-footer ul li {
     list-style-type: none;
     text-decoration: none;
+    text-transform: uppercase;
+    
 }
 
 #list-footer ul li a {
     text-decoration: none;
-    font-weight: bold;
     color: white;
 }
 
