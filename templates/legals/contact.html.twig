@@ -3,23 +3,38 @@
 {% block title %}Contact{% endblock %}
 
 {% block content %}
-<div class="block-small">
-    <h2> Contactez nous </h2>
-    {{ form_start(form) }}
-    <div>
-        {{ form_label(form.email) }}<br>
-        {{ form_widget(form.email) }}
-    </div>
-    <div>
-        {{ form_label(form.objet) }}<br>
-        {{ form_widget(form.objet) }}
-    </div>
-    <div>
-        {{ form_label(form.message) }}<br>
-        {{ form_widget(form.message) }}
-    </div>
-    {{ form_end(form) }}
-</div>
+<div class="row">
+    <div class="col-md-8">
+        <h2> Contactez nous </h2>
+        <p> N'hésitez pas à contacter notre équipe, nous vous répondrons dans les meilleurs délais</p>
+        {% for message in app.flashes('notice') %}
+        <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+        
 
+        <hr><br>
+        {{ form_start(form) }}
+        <div>
+            {{ form_label(form.email) }}<br>
+            {{ form_widget(form.email) }}
+        </div>
+        <div>
+            {{ form_label(form.objet) }}<br>
+            {{ form_widget(form.objet) }}
+        </div>
+        <div>
+            {{ form_label(form.message) }}<br>
+            {{ form_widget(form.message) }}
+        </div>
+        {{ form_end(form) }}
+    </div>
+    <div class="col-md-4">
+        <strong>RaveShop</strong>
+        <hr>
+        07 66 56 53 96<br>
+        79 Route des Romains 67200, Strasbourg<br>
+        raveurfr@gmail.com<br>
+    </div>
+</div>
 
 {% endblock %}
