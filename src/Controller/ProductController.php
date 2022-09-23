@@ -70,6 +70,15 @@ class ProductController extends AbstractController
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             $comment->setCreatedAt(new DateTimeImmutable());
             $comment->setProducts($product);
+
+            // On récupère le contenu du champ parentid
+            $parentId = $commentForm->get('parentid')->getData();
+
+            // On va chercher le commentaire correspondant
+            $parent = $this->entityManager->getRepository(Comments::class)->find($parentId);
+            // On définit le parent
+            $comment->setParent($parent);
+
             $this->entityManager->persist($comment);
             $this->entityManager->flush();
             $this->addFlash('notice', 'votre commentaire a bien été envoyé, il sera visible après modération');

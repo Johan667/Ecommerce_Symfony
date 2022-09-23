@@ -5,7 +5,6 @@ let menu = [document.querySelector("#menu1"), document.querySelector("#menu2")]
 let flexBreak = document.createElement('div')
 flexBreak.style.flexBasis = "100%"
 flexBreak.id = "flexbreak"
-
 burger.addEventListener("click", function () {
     if (burger.classList.contains("fa-bars")) {
         burger.classList.replace("fa-bars", "fa-times")
@@ -80,7 +79,7 @@ window.onload = () => {
         // J'initialise un ecouteur d'evenements sur les boutons de réponse
         element.addEventListener("click", function () {
             // Recupere le contexte de l'élément
-            document.querySelector("comments_parentid").value = this.dataset.id;
+            document.getElementById("comments_parentid").value = this.dataset.id;
         });
     });
 

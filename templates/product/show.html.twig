@@ -1,66 +1,92 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}RaveShop - {{ product.name }}{% endblock %}
+{% block title %}RaveShop -
+{{ product.name }}
+{% endblock %}
 
 {% block content %}
 <div class="wrapper">
-    <div class="row">
-        <div class="col-md-5">
-            <img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid">
-        </div>
-        <div class="col-md-7 my-auto">
-            <h3> {{ product.name }} </h3>
-            <p>{{ product.subtitle }}</p>
+	<div class="row">
+		<div class="col-md-5">
+			<img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid">
+		</div>
+		<div class="col-md-7 my-auto">
+			<h3>
+				{{ product.name }}
+			</h3>
+			<p>{{ product.subtitle }}</p>
 
-            <form action="" method="post">
-                <div class="stars">
-                    <i class="fa-sharp fa-solid fa-star" data-value="1"></i><i class="fa-sharp fa-solid fa-star"
-                        data-value="2"></i><i class="fa-sharp fa-solid fa-star" data-value="3"></i><i
-                        class="fa-sharp fa-solid fa-star" data-value="4"></i><i class="fa-sharp fa-solid fa-star"
-                        data-value="5"></i>
-                </div>
-                <input type="hidden" name="note" id="note" value="0"></input>
+			<form action="" method="post">
+				<div class="stars">
+					<i class="fa-sharp fa-solid fa-star" data-value="1"></i>
+					<i class="fa-sharp fa-solid fa-star" data-value="2"></i>
+					<i class="fa-sharp fa-solid fa-star" data-value="3"></i>
+					<i class="fa-sharp fa-solid fa-star" data-value="4"></i>
+					<i class="fa-sharp fa-solid fa-star" data-value="5"></i>
+				</div>
+				<input type="hidden" name="note" id="note" value="0"></input>
 
-            </form>
-            <span class="product-show-price">{{ (product.price / 100) | number_format(2, ',','.') }}€</span>
-            <hr>
-            <p>{{ product.description }}</p>
+			</form>
+			<span class="product-show-price">{{ (product.price / 100) | number_format(2, ',','.') }}€</span>
+			<hr>
+			<p>{{ product.description }}</p>
 
-            <a href="{{ path('add_to_cart', { id : product.id })}}" class="btn btn-primary">Ajouter au panier</a>
-        </div>
-    </div>
+			<a href="{{ path('add_to_cart', { id : product.id })}}" class="btn btn-primary">Ajouter au panier</a>
+		</div>
+	</div>
 
 </div>
 <hr>
 
 <h2>Nos Bestsellers</h2>
-<p>Découvrez les articles les plus vendus<p>
-        <div class="row">
-            {% for product in products %}
-            <div class="col-md-3">
-                {% include 'product/single_product.html.twig' %}
-            </div>
-            {% endfor %}
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="block-small">
-                    <h2> Commentaires </h2>
-                    {% for comment in product.comments %}
-                    <p>Publié par {{ comment.nickname }}, Le {{ comment.createdAt | date("d/m/Y H:i")}}</p>
-                    {{ comment.content }}
-                    <p><a class="btn btn-primary" href="#ajouter-commentaire" data-reply data-id="{{ comment.id }}">Répondre</a>
-                        <hr>
-                        {% endfor %}
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="block-small" id="ajouter-commentaire">
-                    <h2 class="text-center"> Ajouter un commentaire </h2>
-                    {{ form(commentForm)}}
-                </div>
-            </div>
-        </div>
+<p>Découvrez les articles les plus vendus</p>
+<p>
+	<div class="row">
+		{% for product in products %}
+		<div class="col-md-3">
+			{% include 'product/single_product.html.twig' %}
+		</div>
+		{% endfor %}
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<div class="block-small">
+				<h2>
+					Commentaires
+				</h2>
+				{% for comment in product.comments %}
+				{% if comment.parent == null %}
+				<p>Publié par
+					<strong>{{ comment.nickname }}</strong>,<small> Le
+						{{ comment.createdAt | date("d/m/Y H:i")}}</small></p>
+				{{ comment.content }}
+				<p>
+					<a class="btn btn-primary" href="#ajouter-commentaire" data-reply
+						data-id="{{ comment.id }}">Répondre</a>
+
+					{# On affiche les réponses au commentaires #}
+					{% for reply in comment.replies %}
+					<p>Réponse publié par
+						<strong>{{ reply.nickname }}</strong>,<small> Le
+							{{ reply.createdAt | date("d/m/Y H:i")}}</small></p>
+					{{ reply.content }}
+					{% endfor %}
+					{% endif %}
+					<hr>
+					{% endfor %}
 
 
-        {% endblock %}
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="block-small" id="ajouter-commentaire">
+				<h2 class="text-center">
+					Ajouter un commentaire
+				</h2>
+				{{ form(commentForm)}}
+			</div>
+		</div>
+	</div>
+
+
+	{% endblock %}
