@@ -56,7 +56,7 @@ window.onload = () => {
 
             let previousStar = this.previousElementSibling;
             // Cible l'élément précedent dans le DOM (la balise soeur)
-            while(previousStar){
+            while (previousStar) {
                 // On passe l'étoile qui prècede en jaune
                 previousStar.style.color = "yellow";
                 previousStar = previousStar.previousElementSibling
@@ -64,16 +64,28 @@ window.onload = () => {
             // Tant qu'il y à des étoiles
 
         });
-        star.addEventListener("click", function(){
+        star.addEventListener("click", function () {
             // On écoute le click
             note.value = this.dataset.value;
         });
-        star.addEventListener("mouseout", function(){
-        resetStars(note.value);
+        star.addEventListener("mouseout", function () {
+            resetStars(note.value);
 
         });
-
     }
+
+    /** COMMENTAIRES */
+
+    document.querySelectorAll("[data-reply]").forEach(element => {
+        // J'initialise un ecouteur d'evenements sur les boutons de réponse
+        element.addEventListener("click", function () {
+            // Recupere le contexte de l'élément
+            document.querySelector("comments_parentid").value = this.dataset.id;
+        });
+    });
+
+
+
 
     /**
      * Reset les étoiles en vérifiant la note dans l'input hidden
@@ -82,9 +94,9 @@ window.onload = () => {
 
     function resetStars(note = 0) {
         for (star of stars) {
-            if(star.dataset.value > note){
-            star.style.color = "black";
-            }else{
+            if (star.dataset.value > note) {
+                star.style.color = "black";
+            } else {
                 star.style.color = "yellow";
             }
         }

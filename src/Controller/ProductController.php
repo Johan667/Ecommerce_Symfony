@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Classe\Search;
+use App\Entity\Comments;
 use App\Entity\Product;
+use App\Form\CommentsType;
 use App\Form\SearchType;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,7 +54,7 @@ class ProductController extends AbstractController
     /**
      * @Route("/produit/{slug}", name="product")
      */
-    public function show($slug): Response
+    public function show($slug, Request $request): Response
     {
         $product = $this->entityManager->getRepository(Product::class)->findOneBySlug($slug);
         $products = $this->entityManager->getRepository(Product::class)->findByBestseller(1);
@@ -60,11 +63,26 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('products');
         }
 
+        // Partie commentaire
+        $comment = new Comments();
+        $commentForm = $this->createForm(CommentsType::class, $comment);
+        $commentForm->handleRequest($request);
+        if ($commentForm->isSubmitted() && $commentForm->isValid()) {
+            $comment->setCreatedAt(new DateTimeImmutable());
+            $comment->setProducts($product);
+            $this->entityManager->persist($comment);
+            $this->entityManager->flush();
+            $this->addFlash('notice', 'votre commentaire a bien été envoyé, il sera visible après modération');
+
+            return $this->redirectToRoute('product', ['slug' => $product->getSlug()]);
+        }
+
         return $this->render('product/show.html.twig', [
             'product' => $product,
             // Je passe ma variable à la vue
             'products' => $products,
             // products avec un 's' sera tous les bestseller
+            'commentForm' => $commentForm->createView(),
         ]);
     }
 
