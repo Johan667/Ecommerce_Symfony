@@ -145,6 +145,10 @@ header nav ul li a:hover {
     text-align: center;
     color: orange;
 }
+.home-container{
+    display: flex;
+    flex-direction: row
+}
 
 /* Login */
 

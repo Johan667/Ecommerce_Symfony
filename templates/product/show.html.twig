@@ -11,9 +11,14 @@
         <div class="col-md-7 my-auto">
             <h3> {{ product.name }} </h3>
             <p>{{ product.subtitle }}</p>
+            <div class="stars">
+                <i class="fa-sharp fa-solid fa-star" data-value="1"></i><i class="fa-sharp fa-solid fa-star" data-value="2"></i><i class="fa-sharp fa-solid fa-star" data-value="3"></i><i class="fa-sharp fa-solid fa-star" data-value="4"></i><i class="fa-sharp fa-solid fa-star" data-value="5"></i>
+            </div>
+            <input type="hidden" name="note" id="note" value="0"></input>
             <span class="product-show-price">{{ (product.price / 100) | number_format(2, ',','.') }}€</span>
             <hr>
             <p>{{ product.description }}</p>
+
             <a href="{{ path('add_to_cart', { id : product.id })}}" class="btn btn-primary">Ajouter au panier</a>
         </div>
 
