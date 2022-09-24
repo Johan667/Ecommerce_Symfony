@@ -74,10 +74,14 @@ class ProductController extends AbstractController
             // On récupère le contenu du champ parentid
             $parentId = $commentForm->get('parentid')->getData();
 
-            // On va chercher le commentaire correspondant
-            $parent = $this->entityManager->getRepository(Comments::class)->find($parentId);
+            if ($parentId != null) {
+                // On va chercher le commentaire correspondant
+                $parent = $this->entityManager->getRepository(Comments::class)->find($parentId);
+            }
+
             // On définit le parent
-            $comment->setParent($parent);
+            $comment->setParent($parent ?? null);
+            // Si c'est parent alors c'est $parent sinon c'est null
 
             $this->entityManager->persist($comment);
             $this->entityManager->flush();
