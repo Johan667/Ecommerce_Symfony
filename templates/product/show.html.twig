@@ -7,7 +7,9 @@
 {% block content %}
 <div class="wrapper">
 	<div class="row">
+
 		<div class="col-md-5">
+		<small><a href="{{ path('app_home') }}">Accueil</a> / <a href="{{ path('products')}}">Touts les produits</a> / {{ product.name }}</small>
 			<img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid">
 		</div>
 		<div class="col-md-7 my-auto">

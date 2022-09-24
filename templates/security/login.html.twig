@@ -3,7 +3,7 @@
 {% block title %}RaveShop - Se connecter{% endblock %}
 
 {% block content %}
-<div class="block-small">
+<div class="block-login">
     <form method="post">
         {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -14,18 +14,18 @@
             Vous êtes connecter {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
         {% endif %}
+        <div class="column-login">
+            <h1 class="h3 mb-3 font-weight-normal"><i class="fa-solid fa-user"></i> Connectez vous</h1>
+            <label for="inputEmail">Votre email</label>
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control"
+                autocomplete="email" placeholder="Merci de saisir votre email" required autofocus>
+            <label for="inputPassword">Votre mot de passe</label>
+            <input type="password" name="password" id="inputPassword" class="form-control"
+                autocomplete="current-password" placeholder="Merci de saisir votre mot de passe" required>
 
-        <h1 class="h3 mb-3 font-weight-normal">Connectez vous</h1>
-        <label for="inputEmail">Votre email</label>
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control"
-            autocomplete="email" placeholder="Merci de saisir votre email" required autofocus>
-        <label for="inputPassword">Votre mot de passe</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password"
-            placeholder="Merci de saisir votre mot de passe" required>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-        {#
+            {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
         See https://symfony.com/doc/current/security/remember_me.html
 
@@ -35,16 +35,16 @@
             </label>
         </div>
     #}
-
-        <button class="btn btn-sm btn-info btn-block mt-3" type="submit">
-            Se connecter
-        </button>
-        <hr>
-        <p class="text-center">Ou voulez-vous <a href="{{ path('app_register')}}">Créer un compte</a>?
-        <p class="text-center">Mot de passe oublié ?<a href="{{ path('app_forgot_password_request')}}">Cliquez ici</a>
+            <button class="btn btn-sm btn-info btn-block mt-3" type="submit">
+                Se connecter
+            </button>
+            <hr>
+           <p class="text-center"> <a href="{{ path('app_register')}}" class="btn btn-success"><small>Créer un compte</small></a>
+            <a href="{{ path('app_forgot_password_request')}}" class="btn btn-danger"><small>Mot de passe oublié</small></a></p>
     </form>
 </div>
-    <div class="similary">
-    </div>
+
+<div class="similary">
+</div>
 
 {% endblock %}

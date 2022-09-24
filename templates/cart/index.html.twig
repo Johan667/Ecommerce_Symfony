@@ -4,6 +4,7 @@
 
 {% block content %}
 <div class="wrapper">
+    <small><a href="{{ path('app_home') }}">Accueil</a> / <a href="{{ path('products')}}">Touts les produits</a>
   <h1>Mon Panier</h1>
   Retrouvez les produits que vous avez ajouté à votre panier !
 
@@ -59,7 +60,8 @@
   </div>
   {% else %}
   <hr>
-  <p><b>Votre panier est vide.</b></p>
+  <h2> Oops, votre panier est vide</h2>
+<img src="{{ asset('assets/img/panier-vide.jpg')}}" alt="panier vide" class="panier-vide">
   {% endif %}
 </div>
 <div class="similary">
