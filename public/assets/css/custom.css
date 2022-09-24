@@ -324,6 +324,14 @@ article:hover{
     box-shadow: 0px 0px 2px 1px rgba(70, 46, 255, 0.56);
 }
 
+.form-check:hover{
+    -webkit-transform:scale(1.05); /* Safari et Chrome */
+    -moz-transform:scale(1.05); /* Firefox */
+    -ms-transform:scale(1.05); /* Internet Explorer 9 */
+    -o-transform:scale(1.05); /* Opera */
+    transform:scale(1.05);
+}
+
 .col-form-label {
     font-weight: bold;
 }
@@ -445,3 +453,41 @@ img {
         padding: 2em;
     }
 }
+
+.about-us{
+box-sizing : border-box; 
+position : relative; 
+background : rgb(243, 244, 245) none repeat scroll 0% 0% / auto padding-box border-box; 
+box-shadow : rgba(34, 36, 38, 0.15) 0px 1px 2px 0px; 
+margin : 14px 0px 0px; 
+padding : 42px; 
+border-radius : 4px; 
+border : 1px solid rgba(34, 36, 38, 0.15); 
+margin-bottom : 0px; 
+text-align : center; 
+color : rgba(0, 0, 0, 0.6); 
+font-size : 14px; 
+max-width: 1000px;
+margin: auto;
+margin-top: 2rem;
+}
+
+.line {
+    color:black;
+    text-align:center;
+    overflow:hidden;
+    font-size:16px;
+  }
+  .line:before, .line:after {
+    content:'';
+    width:3em;
+    border-bottom:rgba(7, 7, 7, 0.3) solid;
+    display:inline-block;
+    vertical-align:middle;
+  }
+  .line:before {
+    margin-left:-100%;
+  margin-right:3em}
+ .line:after {
+    margin-right:-100%;
+  margin-left:3em;}

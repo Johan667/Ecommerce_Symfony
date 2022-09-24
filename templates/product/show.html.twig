@@ -22,7 +22,7 @@
 					<i class="fa-sharp fa-solid fa-star" data-value="2"></i>
 					<i class="fa-sharp fa-solid fa-star" data-value="3"></i>
 					<i class="fa-sharp fa-solid fa-star" data-value="4"></i>
-					<i class="fa-sharp fa-solid fa-star" data-value="5"></i>
+					<i class="fa-sharp fa-solid fa-star" data-value="5"></i> (x) <small>note(s)</small> | <a href="#">Posté ma note</a>
 				</div>
 				<input type="hidden" name="note" id="note" value="0"></input>
 
@@ -75,10 +75,11 @@
 	</div>
 
 </div>
-<hr>
+
 <div class="bestsellers">
-<h2>Nos Bestsellers</h2>
-<p>Découvrez les articles les plus vendus</p>
+<h2 class="line">Nos Bestsellers</h2>
+
+<p id="p-home">Vous pourriez aussi aimer</p>
 <div class="row">
 	{% for product in products %}
 	<div class="col-md-3">
