@@ -3,8 +3,8 @@
 {% block title %}RaveShop - Mon Panier{% endblock %}
 
 {% block content %}
-<div class="wrapper">
-    <small><a href="{{ path('app_home') }}">Accueil</a> / <a href="{{ path('products')}}">Touts les produits</a>
+<div class="block-small">
+  <small><a href="{{ path('app_home') }}">Accueil</a> / <a href="{{ path('products')}}">Touts les produits</a></small>
   <h1>Mon Panier</h1>
   Retrouvez les produits que vous avez ajouté à votre panier !
 
@@ -33,11 +33,11 @@
         </td>
         <td>
           <a href="{{ path('delete_quantity_product', { 'id' : product.product.id })}}">
-            <img src="{{ asset('assets/img/minus-sign.png')}}" alt="quantité moins" height="10px">
+            <i class="fa-solid fa-minus"></i> 
           </a>
           x {{ product.quantity}}
           <a href="{{ path('add_to_cart', { 'id' : product.product.id })}}">
-            <img src="{{ asset('assets/img/plus.png')}}" alt="quantité plus" height="10px">
+           <i class="fa-solid fa-plus"></i> 
           </a>
         </td>
         <td>{{ (product.product.price / 100) | number_format(2, ',','.') }} €</td>
@@ -58,12 +58,13 @@
     <b>Total de mon panier :</b> {{ (total / 100) | number_format(2, ',','.') }} €<br>
     <a href="{{ path('app_order')}}" class="btn btn-success mt-3">Valider mon panier</a>
   </div>
+</div>
   {% else %}
   <hr>
   <h2> Oops, votre panier est vide</h2>
-<img src="{{ asset('assets/img/panier-vide.jpg')}}" alt="panier vide" class="panier-vide">
+  <img src="{{ asset('assets/img/panier-vide.jpg')}}" alt="panier vide" class="panier-vide">
   {% endif %}
-</div>
+
 <div class="similary">
 </div>
 {% endblock %}

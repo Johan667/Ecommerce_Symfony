@@ -5,12 +5,16 @@
 {% block content %}
 
 <div class="row">
-    <div class="col-md-9">
-
-<h2>Catégorie VARIABLE</h2>
+    <div class="col-md-6">
+ <small><a href="{{ path('app_home') }}">Accueil</a> / <a href="{{ path('produit_categorie', {'id': category.id}) }}">{{ category.name }}</a></small>
+<h2>Catégorie {{ category.name }}</h2> 
+ {% if category.products | length >= 1 %}
+{{ category.products | length }} Produit
+{% else %}
+{{ category.products | length }} Produits
+{% endif %}
         <div class="row product-container">
             {% for product in products %}
-        {# <h2> {{products.product.category.name }} </h2>  #}
             {#}Pour chaque produit dans le tableau des produits {#}
             <div class="col-md-4">
                 {% include 'product/single_product.html.twig' %}

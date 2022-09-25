@@ -289,6 +289,13 @@ article:hover{
     text-align: center;
 
 }
+.account-item:hover{
+    -webkit-transform:scale(1.05); /* Safari et Chrome */
+    -moz-transform:scale(1.05); /* Firefox */
+    -ms-transform:scale(1.05); /* Internet Explorer 9 */
+    -o-transform:scale(1.05); /* Opera */
+    transform:scale(1.05);
+}
 
 .account-item a {
     text-transform: uppercase;
@@ -470,6 +477,7 @@ font-size : 14px;
 max-width: 1000px;
 margin: auto;
 margin-top: 2rem;
+margin-bottom:2rem;
 }
 
 .line {

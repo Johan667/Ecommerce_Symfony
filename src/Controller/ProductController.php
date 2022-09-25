@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classe\Search;
+use App\Entity\Category;
 use App\Entity\Comments;
 use App\Entity\Product;
 use App\Form\CommentsType;
@@ -102,13 +103,13 @@ class ProductController extends AbstractController
     /**
      * @Route("/produit/categorie/{id}", name="produit_categorie")
      */
-    public function AfficherCategorie($id): Response
+    public function AfficherCategorie($id, Category $category): Response
     {
         $products = $this->entityManager->getRepository(Product::class)->findByCategory($id);
-        // dd($products);
 
         return $this->render('product/category.html.twig', [
             'products' => $products,
+            'category' => $category,
         ]);
     }
 }

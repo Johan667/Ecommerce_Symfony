@@ -4,9 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class AccountOrderController extends AbstractController
 {
@@ -32,6 +33,7 @@ class AccountOrderController extends AbstractController
 
     /**
      * @Route("/compte/mes-commandes/{reference}", name="app_account_order_show")
+     * @ParamConverter("order", options={"mapping": {"reference" : "reference"}})
      */
     public function show($reference): Response
     {

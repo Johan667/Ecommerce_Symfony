@@ -30,7 +30,7 @@
                 <h5 class="mt-3">Récapitulatif de ma commande</h5><br>
                 <p>Retrouvez le récapitulatif de vos produits<p>
             </div>
-            <div class="order-summary mt-3">
+            <div class="block-small mt-3">
                 {% set total = null %}
                 {% for key, product in cart %}
                 <div class="row">
@@ -53,19 +53,19 @@
                     {% set total = total + (product.product.price * product.quantity) %}
                     {% endfor %}
                 </div>
-                <div class="col-6 mt-3 float-right">
-                    <strong>Sous-Total: </strong>{{ (total / 100) | number_format(2, ',','.') }} €<br>
-                    <strong>Livraison: </strong>{{ (career.price / 100) | number_format(2, ',','.') }} €<br>
+                    <strong>Sous-Total: </strong>{{ (total / 100) | number_format(2, ',','.') }} €
+                    <strong>Livraison: </strong>{{ (career.price / 100) | number_format(2, ',','.') }} €
 
 
                     <strong>Total: </strong>{{ ((total / 100) + (career.price / 100))| number_format(2, ',','.') }}
                     €<br>
                 </div>
-
-                <a href="{{ path('stripe_create_session', {'reference': reference}) }}"
-                    class="btn btn-success btn-block mt-3" id="checkout-button">Payer |
-                    <b>{{ ((total / 100) + (career.price / 100))| number_format(2, ',','.') }} €</b></a>
-                </form>
+                
+                    <a href="{{ path('stripe_create_session', {'reference': reference}) }}"
+                        class="btn btn-success btn-block mt-3" id="checkout-button">Payer |
+                        <b>{{ ((total / 100) + (career.price / 100))| number_format(2, ',','.') }} €</b></a>
+                    </form>
+                </div>
             </div>
 
 
@@ -82,7 +82,7 @@
 <script type="text/javascript">
     var stripe = Stripe(
         'sk_test_51L6amqAgDjI611jf49n3RURuEVn6KbawPxt0CKby4wsENM9plWmKeqkq7Cm3Sl1W4JcvjewbvVCBrwyA5knu6b2500QdV5lalL'
-        );
+    );
     var checkoutButton = document.getElementById("checkout-button");
 
     checkoutButton.addEventListener("click", function ()) {
