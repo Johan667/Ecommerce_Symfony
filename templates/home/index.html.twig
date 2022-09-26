@@ -19,8 +19,10 @@
         </section>
 
         <section id="go">
-                <input type="email" placeholder="Entrez votre e-mail"><button type="submit"
-                        class="newsletter">Souscrire</button>
+                {{ form_start(form) }}
+                {{ form_widget(form.email) }}
+                {{ form_end(form) }}
+                
         </section>
 </article>
 <h2 class="title-h2"> Nos rayons</h2>
@@ -28,7 +30,8 @@
                 <div id="back">
                         <div class="card-cat">
                                 <a href="{{path('produit_categorie',{'id':6})}}">
-                                <img src="{{ asset('uploads/sweat-heart.jpg')}}" alt="Sweatshirt" class="image"></a>
+                                        <img src="{{ asset('uploads/sweat-heart.jpg')}}" alt="Sweatshirt"
+                                                class="image"></a>
                                 <div class="centered">Sweatshirt</div>
                         </div>
 
@@ -73,9 +76,10 @@
                         <a href="{{path('produit_categorie',{'id':4})}}">Allez voir</a>
                 </div>
 
-<div class="about-us">
-               <h2> À propos de nous </h2>
-Bienvenue chez Rave Shop, votre boutique en ligne numéro un qui vous offre les meilleurs produits.
-Vous pouvez choisir parmi les meilleurs vêtements et accessoires de notre offre.
-</div>
+                <div class="about-us">
+                        <h2> À propos de nous </h2>
+                        Bienvenue chez Rave Shop, votre boutique en ligne numéro un qui vous offre les meilleurs
+                        produits.
+                        Vous pouvez choisir parmi les meilleurs vêtements et accessoires de notre offre.
+                </div>
                 {% endblock %}
