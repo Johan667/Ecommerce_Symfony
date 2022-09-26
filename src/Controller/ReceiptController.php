@@ -21,13 +21,12 @@ class ReceiptController extends AbstractController
     }
 
     /**
-     * @Route("/receipt/{reference}", name="app_receipt")
+     * @Route("/receipt/{id}", name="app_receipt")
      */
-    public function index($reference): Response
+    public function index($id): Response
     {
-        $order = $this->entityManager->getRepository(Order::class)->findOneById($reference);
-        $orderDetails = $this->entityManager->getRepository(OrderDetails::class);
-        // dd($orderDetails);
+        $order = $this->entityManager->getRepository(Order::class)->findOneById($id);
+        $orderDetails = $this->entityManager->getRepository(OrderDetails::class)->findOrderId($id);
 
         // Configure Dompdf
         $pdfOptions = new Options();
@@ -41,6 +40,7 @@ class ReceiptController extends AbstractController
         // Retrouve la vue HTML pour ma facture
         $html = $this->renderView('/account/receipt.html.twig', [
             'order' => $order,
+            'orderDetails' => $orderDetails,
         ]);
 
         // Load HTML to Dompdf
@@ -60,6 +60,7 @@ class ReceiptController extends AbstractController
         // // Send some text response
         return $this->render('account/receipt.html.twig', [
             'order' => $order,
+            'orderDetails' => $orderDetails,
             'html' => $html,
         ]);
     }
