@@ -118,7 +118,7 @@ tarteaucitron.services.mycustomservice = {
 							{% endif %}
 							<li>
 								<a href="{{ path('app_cart')}}">
-									<i class="fa-solid fa-basket-shopping"></i><div class="badge">{% block totalItems %}{% endblock %}</div>
+									<i class="fa-solid fa-basket-shopping"></i><span id="bulle">{% block totalItems %}{% endblock %}</span>
 								</a>
 							</li>
 							<li>
