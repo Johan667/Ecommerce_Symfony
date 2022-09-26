@@ -26,8 +26,16 @@ class CartController extends AbstractController
      */
     public function index(Cart $cart): Response
     {
+        $tableau = $this->session->get('cart', 'quantity');
+
+        $totalItems = 0;
+        foreach ($tableau as $key => $quantity) {
+            $totalItems += $quantity;
+        }
+
         return $this->render('cart/index.html.twig', [
             'cart' => $cart->getFullCart(),
+            'totalItems' => $totalItems,
         ]);
     }
 
