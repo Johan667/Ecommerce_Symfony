@@ -95,8 +95,7 @@
                 <i class="fa-solid fa-bars fa-2xl dnone" id="burger"></i>
             </div>
             <ul id="menu1">
-                <li><a href="{{ path('products')}}">Boutique</a></li>
-                <li><a href="{{ path('app_cart')}}"><i class="fa-solid fa-basket-shopping"></i></a></li>
+                <li><a href="{{ path('products')}}">Boutique</a></li>            
             </ul>
             <ul id="menu2">
                 {% if not app.user %}
@@ -104,9 +103,10 @@
                 <li><a href="{{ path('app_register') }}">S'enregistrer</a></li>
                 {% else %}
                 {% if is_granted("ROLE_ADMIN") %}
-                <li><a href="{{ path('admin') }}">ADMIN</a></li>
-                {% endif %}
-                <li><a href="{{ path('app_account') }}">Mon compte <small>({{ app.user.firstname }})</small></a></li>
+                <li><a href="{{ path('admin') }}">ADMIN</a></li>              
+                {% endif %}  
+                <li><a href="{{ path('app_cart')}}"><i class="fa-solid fa-basket-shopping"></i></a></li>
+                <li><a href="{{ path('app_account') }}">Mon compte <small>({{ app.user.firstname }})</small></a></li>               
                 <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
 
                 {% endif %}

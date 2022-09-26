@@ -3,11 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Order;
+use App\Entity\OrderDetails;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class AccountOrderController extends AbstractController
 {
@@ -25,27 +25,27 @@ class AccountOrderController extends AbstractController
     {
         $orders = $this->entityManager->getRepository(Order::class)->findSuccessOrders($this->getUser());
         // findSuccessOrders() -> Fonction personnalisée pour afficher les commandes payée les plus récente
-
         return $this->render('account/order.html.twig', [
             'orders' => $orders,
         ]);
     }
 
     /**
-     * @Route("/compte/mes-commandes/{reference}", name="app_account_order_show")
-     * @ParamConverter("order", options={"mapping": {"reference" : "reference"}})
+     * @Route("/compte/mes-commandes/{id}", name="app_account_order_show")
      */
-    public function show($reference): Response
+    public function show($id): Response
     {
-        $order = $this->entityManager->getRepository(Order::class)->findOneByReference($reference);
-        // findSuccessOrders() -> Fonction personnalisée pour afficher les commandes payée les plus récente
-
+        $order = $this->entityManager->getRepository(Order::class)->findOneById($id);
+        $orderDetails = $this->entityManager->getRepository(OrderDetails::class)->findOrderId($id);
         if (!$order || $order->getUser() != $this->getUser()) {
             return $this->redirectToRoute('app_account_order');
         }
 
         return $this->render('account/order_show.html.twig', [
             'order' => $order,
+            'orderDetails' => $orderDetails,
         ]);
     }
 }
+
+// * @ParamConverter("produit", options={"mapping": {"slug" : "slug"}})

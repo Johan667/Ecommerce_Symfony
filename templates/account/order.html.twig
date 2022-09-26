@@ -50,7 +50,7 @@
 								<td>{{   ((order.getTotal + order.carrerPrice) / 100)|number_format(2,',',',') }}
 									€</td>
 								<td class="text-right">
-									<a href="{{ path('app_account_order', { 'reference': order.reference })}}">
+									<a href="{{ path('app_account_order_show', {'id': order.id})}}">
 										<i class="fa fa-search"></i>
 										Détails</a>
 								</td>
