@@ -205,6 +205,18 @@ class Product
         return $this;
     }
 
+    public function countCart($total)
+    {
+        $tableau = $this->session->get('cart', 'quantity');
+
+        $total = 0;
+        foreach ($tableau as $key => $quantity) {
+            $total += $quantity;
+        }
+
+        return $total;
+    }
+
     /**
      * @return Collection<int, Comments>
      */

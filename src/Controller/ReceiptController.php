@@ -35,7 +35,7 @@ class ReceiptController extends AbstractController
         // Instancie Dompdf avec les options
         $dompdf = new Dompdf($pdfOptions);
 
-        $dompdf->getOptions()->setChroot('assets/css/pdf.css');
+        $dompdf->getOptions()->setChroot('public/assets/css/pdf.css');
 
         // Retrouve la vue HTML pour ma facture
         $html = $this->renderView('/account/receipt.html.twig', [

@@ -1,162 +1,186 @@
 <!doctype html>
 <html lang="fr">
 
-<head>
-    <script src="/tarteaucitron/tarteaucitron.js"></script>
-    <script type="text/javascript">
-        var tarteaucitronForceLanguage = "fr";
-    </script>
-    <script type="text/javascript">
-        tarteaucitron.init({
-            "privacyUrl": "confidentialite",
-            /* URL page mentions */
-            "hashtag": "#tarteaucitron",
-            /* Ouvrir le panneau du hashtag */
-            "cookieName": "tarteaucitron",
-            /* Nom du cookie */
-            "orientation": "middle",
-            /* Position banniere (top - bottom) */
-            "groupServices": false,
-            /* Groupe les services par categories */
-            "showAlertSmall": false,
-            /* Petite alerte en bas a droite */
-            "cookieslist": false,
-            /* Montre la liste des cookies */
-            "closePopup": false,
-            /* Fermer le popup */
-            "showIcon": true,
-            /* Montrer l'icone cookie */
-            //"iconSrc": "", /* Optionnal: URL or base64 encoded image */
-            "iconPosition": "BottomLeft",
-            /* BottomRight, BottomLeft, TopRight and TopLeft */
-            "adblocker": false,
-            /* Detecte AD block */
-            "DenyAllCta": true,
-            /* Montre le bouton refuser tout */
-            "AcceptAllCta": true,
-            /* Montre accepter tout */
-            "highPrivacy": true,
-            /* Desactive le contenu automatique */
-            "handleBrowserDNTRequest": false,
-            /* If Do Not Track == 1, disallow all */
-            "removeCredit": true,
-            /* Retire le lien vers tarteaucitron */
-            "moreInfoLink": true,
-            /* Lien Plus d'infos */
-            "useExternalCss": false,
-            /* Si faut le CSS externe sera charger */
-            "useExternalJs": false,
-            /* Si faut le JS externe sera charger */
-            //"cookieDomain": ".my-multisite-domaine.fr", /* Partage les cookies sur un multidomaine */
-            "readmoreLink": "",
-            /* Changer le lien "lire plus"*/
-            "mandatory": true,
-            /* Montre un message a propose des cookies "mandatory" */
-        });
-        tarteaucitron.services.mycustomservice = {
-            "key": "mycustomservice",
-            "type": "ads|analytic|api|comment|other|social|support|video",
-            "name": "MyCustomService",
-            "needConsent": true,
-            "cookies": ['cookie', 'cookie2'],
-            "readmoreLink": "/custom_read_more", // If you want to change readmore link
-            "js": function () {
-                "use strict";
-                // When user allow cookie
-            },
-            "fallback": function () {
-                "use strict";
-                // when use deny cookie
-            }
-        };
-    </script>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Boutique en ligne vêtements et accessoires">
-    <title>{% block title %}RaveShop - Positive Attitude{% endblock %}</title>
+	<head>
+		<script src="/tarteaucitron/tarteaucitron.js"></script>
+		<script type="text/javascript">
+			var tarteaucitronForceLanguage = "fr";
+		</script>
+		<script type="text/javascript">
+			tarteaucitron.init({
+"privacyUrl": "confidentialite",
+/* URL page mentions */
+"hashtag": "#tarteaucitron",
+/* Ouvrir le panneau du hashtag */
+"cookieName": "tarteaucitron",
+/* Nom du cookie */
+"orientation": "middle",
+/* Position banniere (top - bottom) */
+"groupServices": false,
+/* Groupe les services par categories */
+"showAlertSmall": false,
+/* Petite alerte en bas a droite */
+"cookieslist": false,
+/* Montre la liste des cookies */
+"closePopup": false,
+/* Fermer le popup */
+"showIcon": true,
+/* Montrer l'icone cookie */
+// "iconSrc": "", /* Optionnal: URL or base64 encoded image */
+"iconPosition": "BottomLeft",
+/* BottomRight, BottomLeft, TopRight and TopLeft */
+"adblocker": false,
+/* Detecte AD block */
+"DenyAllCta": true,
+/* Montre le bouton refuser tout */
+"AcceptAllCta": true,
+/* Montre accepter tout */
+"highPrivacy": true,
+/* Desactive le contenu automatique */
+"handleBrowserDNTRequest": false,
+/* If Do Not Track == 1, disallow all */
+"removeCredit": true,
+/* Retire le lien vers tarteaucitron */
+"moreInfoLink": true,
+/* Lien Plus d'infos */
+"useExternalCss": false,
+/* Si faut le CSS externe sera charger */
+"useExternalJs": false,
+/* Si faut le JS externe sera charger */
+// "cookieDomain": ".my-multisite-domaine.fr", /* Partage les cookies sur un multidomaine */
+"readmoreLink": "",
+/* Changer le lien "lire plus"*/
+"mandatory": true,
+/* Montre un message a propose des cookies "mandatory" */
+});
+tarteaucitron.services.mycustomservice = {
+"key": "mycustomservice",
+"type": "ads|analytic|api|comment|other|social|support|video",
+"name": "MyCustomService",
+"needConsent": true,
+"cookies": [
+'cookie', 'cookie2'
+],
+"readmoreLink": "/custom_read_more", // If you want to change readmore link
+"js": function () {
+"use strict";
+// When user allow cookie
+},
+"fallback": function () {
+"use strict";
+// when use deny cookie
+}
+};
+		</script>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="Boutique en ligne vêtements et accessoires">
+		<title>
+			{% block title %}RaveShop - Positive Attitude
+			{% endblock %}
+		</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{ asset('assets/css/custom.css')}}" rel="stylesheet">
-    <!-- Icone onglet -->
-    <link rel="icon" href="{{ asset('assets/img/logo.png')}}">
-    {% block javascript %}
-    {% endblock %}
+		<!-- Bootstrap core CSS -->
+		<link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+		<link
+		href="{{ asset('assets/css/custom.css')}}" rel="stylesheet">
+		<!-- Icone onglet -->
+		<link rel="icon" href="{{ asset('assets/img/logo.png')}}"> {% block javascript %}{% endblock %}
 
-</head>
+		</head>
 
-<body>
+		<body>
 
-    <header>
-        <nav>
-            <div>
-                <a href="{{ path('app_home') }}"><img src="{{ asset('assets/img/logo.png')}}" alt="logo"
-                        class="logo"></a>
-                <i class="fa-solid fa-bars fa-2xl dnone" id="burger"></i>
-            </div>
-            <ul id="menu1">
-                <li><a href="{{ path('products')}}">Boutique</a></li>            
-            </ul>
-            <ul id="menu2">
-                {% if not app.user %}
-                <li><a href="{{ path('app_login') }}">Connexion</a></li>
-                <li><a href="{{ path('app_register') }}">S'enregistrer</a></li>
-                {% else %}
-                {% if is_granted("ROLE_ADMIN") %}
-                <li><a href="{{ path('admin') }}">ADMIN</a></li>              
-                {% endif %}  
-                <li><a href="{{ path('app_cart')}}"><i class="fa-solid fa-basket-shopping"></i></a></li>
-                <li><a href="{{ path('app_account') }}">Mon compte <small>({{ app.user.firstname }})</small></a></li>               
-                <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+			<header>
+				<nav>
+					<div>
+						<a href="{{ path('app_home') }}"><img src="{{ asset('assets/img/logo.png')}}" alt="logo" class="logo"></a>
+						<i class="fa-solid fa-bars fa-2xl dnone" id="burger"></i>
+					</div>
+					<ul id="menu1">
+						<li>
+							<a href="{{ path('products')}}">Boutique</a>
+						</li>
+					</ul>
+					<ul id="menu2">
+						{% if not app.user %}
+							<li>
+								<a href="{{ path('app_login') }}">Connexion</a>
+							</li>
+							<li>
+								<a href="{{ path('app_register') }}">S'enregistrer</a>
+							</li>
+						{% else %}
+							{% if is_granted("ROLE_ADMIN") %}
+								<li>
+									<a href="{{ path('admin') }}">ADMIN</a>
+								</li>
+							{% endif %}
+							<li>
+								<a href="{{ path('app_cart')}}">
+									<i class="fa-solid fa-basket-shopping"></i>
+								</a>
+							</li>
+							<li>
+								<a href="{{ path('app_account') }}">Mon compte
+									<small>({{ app.user.firstname }})</small>
+								</a>
+							</li>
+							<li>
+								<a href="{{ path('app_logout') }}">Déconnexion</a>
+							</li>
 
-                {% endif %}
-            </ul>
-        </nav>
-    </header>
-    <main>
-        {% block content %}{% endblock %}
-    </main>
-    <!-- FOOTER -->
-    <footer>
-        <div class="container-footer">
-            <div id="list-footer">
-                <ul>
-                    <li> <a href="{{ path('app_contact')}}" alt="Contact">Contact</a></li>
-                </ul>
-            </div>
-            <div id="list-footer">
-                <ul>
-                    <li> <a href="{{ path('mentions')}}" alt="Mentions légale">Mentions légale</a></li>
-                </ul>
-            </div>
-            <div id="list-footer">
-                <ul>
-                    <div id="list-footer">
-                        <ul>
-                            <li> <a href="{{ path('confidentialite')}}" alt="Politique de cofidentialité">Politique de cofidentialité</a></li>
-                        </ul>
-                    </div>
-                </ul>
-            </div>
-            <div class="list-footer">
-                <a target="_blank" href="https://www.facebook.com/" alt="Facebook"><i
-                        class="fa-brands fa-facebook"></i></a>
-                <a target="_blank" href="https://www.instagram.com/" alt="Instagram"><i
-                        class="fa-brands fa-instagram"></i></a>
-            </div>
-            <div id="list-footer">
-                © 2022, RAVESHOP  <i class="fa-solid fa-heart-pulse"></i>
-            </div>
-        </div>
-    </footer>
+						{% endif %}
+					</ul>
+				</nav>
+			</header>
+			<main>
+				{% block content %}{% endblock %}
+			</main>
+			<!-- FOOTER -->
+			<footer>
+				<div class="container-footer">
+					<div id="list-footer">
+						<ul>
+							<li><ahref="{{ path('app_contact')}}" alt="Contact">Contact</a></li>
+						</ul>
+					</div>
+					<div id="list-footer">
+						<ul>
+							<li><ahref="{{ path('mentions')}}" alt="Mentions légale">Mentions légale</a></li>
+						</ul>
+					</div>
+					<div id="list-footer">
+						<ul>
+							<div id="list-footer">
+								<ul>
+									<li><ahref="{{ path('confidentialite')}}" alt="Politique de cofidentialité">Politique de cofidentialité</a></li>
+								</ul>
+							</div>
+						</ul>
+					</div>
+					<div class="list-footer">
+						<a target="_blank" href="https://www.facebook.com/" alt="Facebook">
+							<i class="fa-brands fa-facebook"></i>
+						</a>
+						<a target="_blank" href="https://www.instagram.com/" alt="Instagram">
+							<i class="fa-brands fa-instagram"></i>
+						</a>
+					</div>
+					<div id="list-footer">
+						© 2022, RAVESHOP
+						<i class="fa-solid fa-heart-pulse"></i>
+					</div>
+				</div>
+			</footer>
 
 
-</body>
-{% block script %}
-<script src="https://kit.fontawesome.com/3f1f47ed70.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="{{ asset('assets/js/bootstrap.bundle.js')}}"></script>
-<script src="{{ asset('assets/js/script.js') }}"></script>
-{% endblock %}
+		</body>
+		{% block script %}
+			<script src="https://kit.fontawesome.com/3f1f47ed70.js" crossorigin="anonymous"></script>
+			<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+			<script src="{{ asset('assets/js/bootstrap.bundle.js')}}"></script>
+			<script src="{{ asset('assets/js/script.js') }}"></script>
+		{% endblock %}
 
-</html>
+	</html>
