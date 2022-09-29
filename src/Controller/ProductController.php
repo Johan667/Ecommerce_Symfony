@@ -6,6 +6,7 @@ use App\Classe\Search;
 use App\Entity\Category;
 use App\Entity\Comments;
 use App\Entity\Product;
+use App\Entity\Star;
 use App\Form\CommentsType;
 use App\Form\SearchType;
 use DateTimeImmutable;
@@ -59,6 +60,7 @@ class ProductController extends AbstractController
     {
         $product = $this->entityManager->getRepository(Product::class)->findOneBySlug($slug);
         $products = $this->entityManager->getRepository(Product::class)->findByBestseller(1);
+        $stars = $this->entityManager->getRepository(Star::class)->findVote($this->getUser()->getId(), $product->getId());
 
         if (!$product) {
             return $this->redirectToRoute('products');
@@ -97,6 +99,7 @@ class ProductController extends AbstractController
             'products' => $products,
             // products avec un 's' sera tous les bestseller
             'commentForm' => $commentForm->createView(),
+            'stars' => $stars,
         ]);
     }
 

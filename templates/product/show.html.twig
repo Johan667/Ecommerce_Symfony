@@ -12,27 +12,29 @@
 				/ {{ product.name }}</small>
 			<img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid">
 		</div>
-		<div class="col-md-5 my-auto">
+		<div class="col-md-7 my-auto">
 			<h3>
 				{{ product.name }}
 			</h3>
-			<p>{{ product.subtitle }}</p>
-
+			{% if stars is null %}
 			<form action="" method="post">
 				<div class="stars">
 					<i class="fa-sharp fa-solid fa-star" data-value="1"></i>
-					<i class="fa-sharp fa-solid fa-star" data-value="2"></i></a>
-					{#} afficher la note des etoiles quand l'user et co {#}
+					<i class="fa-sharp fa-solid fa-star" data-value="2"></i>
 					<i class="fa-sharp fa-solid fa-star" data-value="3"></i>
 					<i class="fa-sharp fa-solid fa-star" data-value="4"></i>
-					{# <i class="fa-sharp fa-solid fa-star" data-value="5"></i>{% if vote != null %} {% for note in vote %}{{ note }}{% endfor %}{% endif %} <small>note(s)</small> | <a href="#">Posté ma note</a> #}
-				</div>
-				<input type="hidden" name="note" id="note" data-value="0"></input>
-
+					<i class="fa-sharp fa-solid fa-star" data-value="5"></i> | <a href="#">Posté ma note</a><br>
+					<input type="hidden" name="note" id="note" data-value="0"></input>
 			</form>
-			<span class="product-show-price">{{ (product.price / 100) | number_format(2, ',','.') }}€</span>
-			<hr>
+			{% endif %}
+			{% if app.user %}
+			{% if stars.note is defined %}
+			Votre note : {{ stars.note }}<br>
+			Sur<small> xx note(s)</small><br>{% endif %}
+			{% endif %}
+			<p>{{ product.subtitle }}</p>
 			<p>{{ product.description }}</p>
+			<span class="product-show-price">{{ (product.price / 100) | number_format(2, ',','.') }}€</span><br>
 
 			<a href="{{ path('add_to_cart', { id : product.id })}}" class="button-custom">Ajouter au panier</a>
 			<!-- Button trigger modal -->
@@ -79,27 +81,27 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="button-custom" data-dismiss="modal">Fermer</button>
-							
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<div class="bestsellers">
-	<h2 class="line">Nos Bestsellers</h2>
 
-	<p id="p-home">Vous pourriez aussi aimer</p>
-	<div class="row">
-		{% for product in products %}
-		<div class="col-md-3">
-			{% include 'product/single_product.html.twig' %}
+	<div class="bestsellers">
+		<h2 class="line">Nos Bestsellers</h2>
+
+		<p id="p-home">Vous pourriez aussi aimer</p>
+		<div class="row">
+			{% for product in products %}
+			<div class="col-md-3">
+				{% include 'product/single_product.html.twig' %}
+			</div>
+			{% endfor %}
 		</div>
-		{% endfor %}
 	</div>
-</div>
 </div>
 
 {% endblock %}
