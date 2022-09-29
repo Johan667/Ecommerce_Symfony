@@ -4,38 +4,19 @@ namespace App\Controller;
 
 use App\Classe\Cart;
 use App\Entity\Product;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CartController extends AbstractController
 {
-    private $session;
-    private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager, SessionInterface $session)
-    {
-        $this->session = $session;
-        $this->entityManager = $entityManager;
-    }
-
     /**
      * @Route("/mon-panier", name="app_cart")
      */
     public function index(Cart $cart): Response
     {
-        $tableau = $this->session->get('cart', 'quantity');
-
-        $totalItems = 0;
-        foreach ($tableau as $key => $quantity) {
-            $totalItems += $quantity;
-        }
-
         return $this->render('cart/index.html.twig', [
             'cart' => $cart->getFullCart(),
-            'totalItems' => $totalItems,
         ]);
     }
 

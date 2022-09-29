@@ -17,7 +17,9 @@ class NewsletterType extends AbstractType
                 'label' => 'Email : ',
                 'attr' => ['class' => 'input-full'],
                 ])
-            ->add('Souscrire', SubmitType::class)
+            ->add('Souscrire', SubmitType::class, [
+                'attr' => ['class' => 'button-custom'],
+                ])
         ;
     }
 

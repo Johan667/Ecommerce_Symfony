@@ -85,7 +85,8 @@ tarteaucitron.services.mycustomservice = {
 		<link
 		href="{{ asset('assets/css/custom.css')}}" rel="stylesheet">
 		<!-- Icone onglet -->
-		<link rel="icon" href="{{ asset('assets/img/logo.png')}}"> {% block javascript %}{% endblock %}
+		<link rel="icon" href="{{ asset('assets/img/logo.png')}}">
+		 {% block javascript %}{% endblock %}
 
 		</head>
 
@@ -118,7 +119,7 @@ tarteaucitron.services.mycustomservice = {
 							{% endif %}
 							<li>
 								<a href="{{ path('app_cart')}}">
-									<i class="fa-solid fa-basket-shopping"></i><span id="bulle">{% block totalItems %}{% endblock %}</span>
+									<i class="fa-solid fa-basket-shopping"></i><span id="bulle">{{ CartService.CartQuantity }}</span>
 								</a>
 							</li>
 							<li>
@@ -142,19 +143,19 @@ tarteaucitron.services.mycustomservice = {
 				<div class="container-footer">
 					<div id="list-footer">
 						<ul>
-							<li><ahref="{{ path('app_contact')}}" alt="Contact">Contact</a></li>
+							<li><a href="{{ path('app_contact')}}" alt="Contact">Contact</a></li>
 						</ul>
 					</div>
 					<div id="list-footer">
 						<ul>
-							<li><ahref="{{ path('mentions')}}" alt="Mentions légale">Mentions légale</a></li>
+							<li><a href="{{ path('mentions')}}" alt="Mentions légale">Mentions légale</a></li>
 						</ul>
 					</div>
 					<div id="list-footer">
 						<ul>
 							<div id="list-footer">
 								<ul>
-									<li><ahref="{{ path('confidentialite')}}" alt="Politique de cofidentialité">Politique de cofidentialité</a></li>
+									<li><a href="{{ path('confidentialite')}}" alt="Politique de cofidentialité">Politique de cofidentialité</a></li>
 								</ul>
 							</div>
 						</ul>

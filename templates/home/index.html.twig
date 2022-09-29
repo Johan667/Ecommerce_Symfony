@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block carousel %}{% endblock %}
+
 {% block content %}
 <div class="contenant">
         <a href="{{ path('products')}}">
@@ -21,8 +21,7 @@
         <section id="go">
                 {{ form_start(form) }}
                 {{ form_widget(form.email) }}
-                {{ form_end(form) }}
-                
+                {{ form_end(form) }}               
         </section>
 </article>
 <h2 class="title-h2"> Nos rayons</h2>

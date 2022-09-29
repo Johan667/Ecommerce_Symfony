@@ -28,9 +28,9 @@ class StarController extends AbstractController
     public function Star(Product $product, StarRepository $st, int $note)
     {
         $vote = null;
-        // if ($this->getUser()) {
-        //     $vote = $st->findVote($this->getUser()->getId(), $product->getId());
-        // }
+        if ($this->getUser()) {
+            $vote = $st->findVote($this->getUser()->getId(), $product->getId());
+        }
 
         if ($note >= 1 && $note <= 5 && $this->getUser()) {
             // verifie si il y à une note et que l'utilisateur et connecte

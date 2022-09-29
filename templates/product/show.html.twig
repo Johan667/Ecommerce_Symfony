@@ -5,14 +5,14 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="wrapper">
 	<div class="row">
-
 		<div class="col-md-5">
-		<small><a href="{{ path('app_home') }}">Accueil</a> / <a href="{{ path('products')}}">Touts les produits</a> / {{ product.name }}</small>
+			<small><a href="{{ path('app_home') }}">Accueil</a> / <a href="{{ path('products')}}">Touts les produits</a>
+				/ {{ product.name }}</small>
 			<img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid">
 		</div>
-		<div class="col-md-7 my-auto">
+		<div class="col-md-5 my-auto">
 			<h3>
 				{{ product.name }}
 			</h3>
@@ -21,74 +21,92 @@
 			<form action="" method="post">
 				<div class="stars">
 					<i class="fa-sharp fa-solid fa-star" data-value="1"></i>
-					<i class="fa-sharp fa-solid fa-star" data-value="2"></i>
+					<i class="fa-sharp fa-solid fa-star" data-value="2"></i></a>
+					{#} afficher la note des etoiles quand l'user et co {#}
 					<i class="fa-sharp fa-solid fa-star" data-value="3"></i>
 					<i class="fa-sharp fa-solid fa-star" data-value="4"></i>
-					<i class="fa-sharp fa-solid fa-star" data-value="5"></i> (x) <small>note(s)</small> | <a href="#">Posté ma note</a>
+					{# <i class="fa-sharp fa-solid fa-star" data-value="5"></i>{% if vote != null %} {% for note in vote %}{{ note }}{% endfor %}{% endif %} <small>note(s)</small> | <a href="#">Posté ma note</a> #}
 				</div>
-				<input type="hidden" name="note" id="note" value="0"></input>
+				<input type="hidden" name="note" id="note" data-value="0"></input>
 
 			</form>
 			<span class="product-show-price">{{ (product.price / 100) | number_format(2, ',','.') }}€</span>
 			<hr>
 			<p>{{ product.description }}</p>
 
-			<a href="{{ path('add_to_cart', { id : product.id })}}" class="btn btn-primary">Ajouter au panier</a>
-			<div class="collapse" id="collapseExample">
-				<p>
-					<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
-						aria-expanded="false" aria-controls="collapseExample">
-						Commentaires
-					</a>
-				</p>
-				<div class="card card-body">
-					<div class="block-small" id="ajouter-commentaire">
-						<h2>
-							Commentaires
-						</h2>
-						{% for comment in product.comments %}
-						{% if comment.parent == null %}
-						<p>Publié par
-							<strong>{{ comment.nickname }}</strong>,<small> Le
-								{{ comment.createdAt | date("d/m/Y H:i")}}</small></p>
-						{{ comment.content }}
-						<p>
-							<a class="btn btn-primary" href="#ajouter-commentaire" data-reply
-								data-id="{{ comment.id }}">Répondre</a>
+			<a href="{{ path('add_to_cart', { id : product.id })}}" class="button-custom">Ajouter au panier</a>
+			<!-- Button trigger modal -->
+			<button type="button" class="button-custom" data-toggle="modal" data-target="#exampleModal">
+				Voir les commentaires
+			</button>
 
-							{# On affiche les réponses au commentaires #}
-							{% for reply in comment.replies %}
-							<p>Réponse publié par
-								<strong>{{ reply.nickname }}</strong>,<small> Le
-									{{ reply.createdAt | date("d/m/Y H:i")}}</small></p>
-							{{ reply.content }}
-							{% endfor %}
-							{% endif %}
-							{% endfor %}
-							<hr>
-							<h2 class="text-center">
-								Ajouter un commentaire
-							</h2>
-							{{ form(commentForm)}}
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Commentaire {{ product.name }}</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							{% for comment in product.comments %}
+							{% if comment.parent == null %}
+							<p>Publié par
+								<strong>{{ comment.nickname }}</strong>,<small> Le
+									{{ comment.createdAt | date("d/m/Y H:i")}}</small></p>
+							{{ comment.content }}
+							<p>
+								<a class="button-custom" href="#ajouter-commentaire" data-reply
+									data-id="{{ comment.id }}">Répondre</a>
+
+								{# On affiche les réponses au commentaires #}
+								{% for reply in comment.replies %}
+								<p>Réponse publié par
+									<strong>{{ reply.nickname }}</strong>,<small> Le
+										{{ reply.createdAt | date("d/m/Y H:i")}}</small></p>
+								{{ reply.content }}
+								{% endfor %}
+								{% endif %}
+								{% endfor %}
+								<hr>
+								<h2 class="text-center">
+									Ajouter un commentaire
+								</h2>
+								{{ form(commentForm)}}
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="button-custom" data-dismiss="modal">Fermer</button>
+							
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
+</div>
 
 <div class="bestsellers">
-<h2 class="line">Nos Bestsellers</h2>
+	<h2 class="line">Nos Bestsellers</h2>
 
-<p id="p-home">Vous pourriez aussi aimer</p>
-<div class="row">
-	{% for product in products %}
-	<div class="col-md-3">
-		{% include 'product/single_product.html.twig' %}
+	<p id="p-home">Vous pourriez aussi aimer</p>
+	<div class="row">
+		{% for product in products %}
+		<div class="col-md-3">
+			{% include 'product/single_product.html.twig' %}
+		</div>
+		{% endfor %}
 	</div>
-	{% endfor %}
 </div>
 </div>
 
+{% endblock %}
+{% block javascript %}
+<script>
+	$('#myModal').on('shown.bs.modal', function () {
+		$('#myInput').trigger('focus')
+	})
+</script>
 {% endblock %}

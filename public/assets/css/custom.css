@@ -110,6 +110,28 @@ header nav ul li a:hover {
 .fa-heart-pulse {
     color: red;
 }
+.button-custom {
+    display: inline-block;
+    background-color: #020202;
+    border-radius: 5px;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 14px;
+    padding: 6px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+.button-custom a {
+    text-decoration: none;
+    color:black;
+}
+
+.button-custom:hover {
+    background-color: orange;
+  }
+
+
 
 
 @media screen and (min-width:820px) {
@@ -278,6 +300,7 @@ article:hover{
     margin-top: 50px;
 }
 
+
 .product-item h5 {
     text-transform: uppercase;
     font-size: 16px;
@@ -294,6 +317,13 @@ article:hover{
     font-size: 14px;
     display: block;
     font-weight: bold;
+}
+.product-item:hover{
+    -webkit-transform:scale(1.05); /* Safari et Chrome */
+    -moz-transform:scale(1.05); /* Firefox */
+    -ms-transform:scale(1.05); /* Internet Explorer 9 */
+    -o-transform:scale(1.05); /* Opera */
+    transform:scale(1.05);
 }
 
 /* Mon compte */
@@ -326,6 +356,7 @@ article:hover{
     text-decoration: none;
 }
 
+
 /* Fiche produit */
 
 .product-show-price {
@@ -337,6 +368,9 @@ article:hover{
 }
 .bestsellers{
     max-width: 800px;
+}
+.column-comment{
+    max-width: 300px;
 }
 
 /* Récapitulatif Commande */
