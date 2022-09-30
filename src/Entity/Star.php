@@ -20,18 +20,18 @@ class Star
     private $id;
 
     /**
-     * @ORM\Column(type="smallint", nullable="true")
+     * @ORM\Column(type="smallint")
      */
     private $note;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="etoiles")
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="star")
      * @ORM\JoinColumn(nullable=false)
      */
     private $product;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="etoiles")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="star")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
@@ -60,7 +60,7 @@ class Star
 
     public function setProduct(?Product $product): self
     {
-        $this->produit = $product;
+        $this->product = $product;
 
         return $this;
     }

@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Entity\Star;
-use App\Repository\StarRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,32 +22,23 @@ class StarController extends AbstractController
      * @Route("/etoile/{slug}/{note}", name="app_star")
      *
      * @ParamConverter("product", options={"mapping": {"slug" : "slug"}})
-     * @ParamConverter("note")
+     * @ParamConverter("note", options={"mapping": {"note" : "note"}})
      */
-    public function Star(Product $product, StarRepository $st, int $note)
+    public function Star(Product $product, int $note)
     {
-        $vote = null;
-        if ($this->getUser()) {
-            $vote = $st->findVote($this->getUser()->getId(), $product->getId());
-        }
+        $star = new Star(); // Crée le vote
+        $star->setProduct($product);
+        $star->setUser($this->getUser());
+        $star->setNote($note);
 
-        if ($note >= 1 && $note <= 5 && $this->getUser()) {
-            // verifie si il y à une note et que l'utilisateur et connecte
-            $star = new Star(); // Crée le vote
-            $star->setProduct($product);
-            $star->setUser($this->getUser());
-            $star->setNote($note);
+        $this->entityManager->persist($star);
+        $this->entityManager->flush();
 
-            $this->entityManager->persist($star);
-            $this->entityManager->flush();
-            $this->addFlash('sucess', 'Votre vote a bien été pris en compte !');
-        } else {
-            $this->addFlash('error', 'Votre vote est invalide !');
-        }
+        $this->addFlash('sucess', 'Votre vote a bien été pris en compte !');
 
         return $this->redirectToRoute('product', [
             'slug' => $product->getSlug(),
-            'vote' => $vote,
+            'note' => $note,
         ]);
     }
 }
