@@ -44,6 +44,7 @@
 									{% elseif order.state == 3 %}
 										<span class="badge badge-success">En cours de livraison</span>
 									{% endif %}
+									{#} On affiche le statut de la commande en fonction de la valeur de state {#}
 								</td>
 								<td>{{ order.createdAt | date('d/m/Y')}}</td>
 								<td>{{ order.orderDetails | length }}</td>

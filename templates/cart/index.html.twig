@@ -8,6 +8,7 @@
   Retrouvez les produits que vous avez ajouté à votre panier !
 
   {% if cart | length > 0 %}
+  {#} Si dans le panier il y à plus que 0 article{#}
   <table class="table mt-3">
     <thead>
       <tr>
@@ -22,6 +23,7 @@
     <tbody>
       {% set total = null %}
       {% for product in cart %}
+      {#} Pour chaque produit dans le panier {#}
       <tr>
 
         <th scope="row">
@@ -49,11 +51,13 @@
 
       </tr>
       {% set total = total + (product.product.price * product.quantity) %}
+      {#} Je set le total avec le prix du produit multiplié par sa quantité {#}
       {% endfor %}
     </tbody>
   </table>
   <div class="text-right mb-5">
     <b>Nombre de produit(s) :</b> {{ cart | length }}<br>
+    {#} Je compte le nombre de produit grace à la fonction length {#}
     <b>Total de mon panier :</b> {{ (total / 100) | number_format(2, ',','.') }} €<br>
     <a href="{{ path('app_order')}}" class="button-custom mt-3">Valider mon panier</a>
   </div>

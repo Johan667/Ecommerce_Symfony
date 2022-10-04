@@ -6,6 +6,7 @@
 <div class="wrapper">
 <h1 class="text-center mt-3 ">Mon Compte</h1>
 {% if is_granted('ROLE_ADMIN') %}
+{#} Si l'utilisateur à le rôle admin {#}
 <small><a href="{{ path('admin')}}">Vous êtes administrateur, cliquez ici pour accéder au back-office</a></small><br>
 {% endif %}
 <p class="text-center mt-3">Bienvenue dans votre compte <b>{{ app.user.firstname }}</b> !<br>
