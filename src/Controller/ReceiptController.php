@@ -27,6 +27,7 @@ class ReceiptController extends AbstractController
     {
         $order = $this->entityManager->getRepository(Order::class)->findOneById($id);
         $orderDetails = $this->entityManager->getRepository(OrderDetails::class)->findOrderId($id);
+        // Je cherches la commande par id et son détail
 
         // Configure Dompdf
         $pdfOptions = new Options();
@@ -43,13 +44,13 @@ class ReceiptController extends AbstractController
             'orderDetails' => $orderDetails,
         ]);
 
-        // Load HTML to Dompdf
+        // Charge le html
         $dompdf->loadHtml($html);
 
-        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        // Configure l'orientation du document
         $dompdf->setPaper('A4', 'portrait');
 
-        // Render the HTML as PDF
+        // Change le html en pdf
         $dompdf->render();
 
         $dompdf->stream();

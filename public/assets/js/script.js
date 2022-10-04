@@ -1,3 +1,4 @@
+
 let burger = document.querySelector("#burger")
 
 let menu = [document.querySelector("#menu1"), document.querySelector("#menu2")]
@@ -99,6 +100,7 @@ window.onload = () => {
             });
         });
 
+    
 
 }
 

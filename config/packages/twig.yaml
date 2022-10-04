@@ -3,6 +3,7 @@ twig:
     form_themes: ['bootstrap_5_layout.html.twig']
     globals:
         CartService: '@App\Service\CartService'
+        StarService: '@App\Service\StarService'
 
 
 when@test:

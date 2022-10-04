@@ -66,7 +66,7 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('products');
         }
 
-        // Partie commentaire
+        // Parti commentaire
         $comment = new Comments();
         $commentForm = $this->createForm(CommentsType::class, $comment);
         $commentForm->handleRequest($request);

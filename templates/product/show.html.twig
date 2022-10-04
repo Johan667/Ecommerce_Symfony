@@ -24,19 +24,19 @@
 					<form action="" method="post">
 						<div class="stars">
 							<a href="{{ path("app_star", {'slug': product.slug, 'note': 1 }) }}">
-								<i class="fa-sharp fa-solid fa-star"></i>
+								<i class="fa-sharp fa-solid fa-star" id="note"></i>
 							</a>
 							<a href="{{ path("app_star", {'slug': product.slug, 'note': 2 }) }}">
-							<i class="fa-sharp fa-solid fa-star"></i>
+							<i class="fa-sharp fa-solid fa-star" id="note"></i>
 							</a>
 							<a href="{{ path("app_star", {'slug': product.slug, 'note': 3 }) }}">
-							<i class="fa-sharp fa-solid fa-star"></i>
+							<i class="fa-sharp fa-solid fa-star" id="note"></i>
 							</a>
 							<a href="{{ path("app_star", {'slug': product.slug, 'note': 4 }) }}">
-							<i class="fa-sharp fa-solid fa-star"></i>
+							<i class="fa-sharp fa-solid fa-star" id="note"></i>
 							</a>
 							<a href="{{ path("app_star", {'slug': product.slug, 'note': 5 }) }}">
-							<i class="fa-sharp fa-solid fa-star"></i><br>
+							<i class="fa-sharp fa-solid fa-star" id="note"></i><br>
 							</a>
 							<input type="hidden" name="note" id="note" data-value="0"></input>
 					</form>
@@ -44,7 +44,7 @@
 				{% if app.user %}
 					{% if stars.note is defined %}
 						Votre note :
-						{{ stars.note }}<br>
+						{{ stars.note }} <br>
 						Sur<small>
 							xx note(s)</small><br>
 					{% endif %}

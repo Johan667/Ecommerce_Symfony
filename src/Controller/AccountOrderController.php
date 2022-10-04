@@ -36,9 +36,10 @@ class AccountOrderController extends AbstractController
     public function show($id): Response
     {
         $order = $this->entityManager->getRepository(Order::class)->findOneById($id);
-        // dd($order);
+
         $orderDetails = $this->entityManager->getRepository(OrderDetails::class)->findOrderId($id);
         if (!$order || $order->getUser() != $this->getUser()) {
+            // Si il n'y à pas de commande ou que la commande de l'utilisateur courant est différente à celle ci
             return $this->redirectToRoute('app_account_order');
         }
 

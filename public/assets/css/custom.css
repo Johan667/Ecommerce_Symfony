@@ -5,6 +5,7 @@
 
 .wrapper {
     max-width: 1300px;
+    margin-bottom: 3rem;
 }
 
 /* Base */
@@ -159,6 +160,9 @@ header nav ul li a:hover {
         align-items: center;
         width: 100%;
     }
+    #article-newsletter, .title-h2{
+        display:none;
+    }
 
     #burger {
         display: block;
@@ -245,13 +249,10 @@ article:hover{
     font-size: 16px;
   }
 
-
-    
-
 #banner{
     background-image: url('https://images.pexels.com/photos/2224399/pexels-photo-2224399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');;
-    height:600px;
-    width: 80%;
+    max-height:700px;
+    max-width: 80%;
     color:rgba(255, 255, 255, 0.756);
     display: flex;
     margin-top: 2rem;
@@ -409,7 +410,6 @@ article:hover{
     text-align: center;
     color: white;
     height: 170px;
-    margin-bottom: 0;
     position: relative;
 
 }

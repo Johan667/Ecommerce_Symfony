@@ -77,7 +77,7 @@ class Cart
         // Retourne le panier avec sa nouvelle valeur
     }
 
-    public function deleteQuantity($id)
+    public function deleteQuantity($id) // Supprime la quantité x article
     {
         $cart = $this->session->get('cart', []);
         if ($cart[$id] > 1) {

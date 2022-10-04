@@ -20,14 +20,21 @@ class StripeController extends AbstractController
     public function index(EntityManagerInterface $entityManager, Cart $cart, $reference)
     {
         $products_for_stripe = [];
+        // J'instancie un tableau vide pour y entrer plus tard toutes les infos dont j'aurais besoin dans la create session
+
         $YOUR_DOMAIN = 'http://127.0.0.1:8000';
+        // Domaine local pour le moment pour afficher success ou error
+
         $order = $entityManager->getRepository(Order::class)->findOneByReference($reference);
+        // Trouve une commande par la référence
 
         if (!$order) {
             new JsonResponse(['error' => 'order']);
         }
+        // Si il n'y à pas de commande error
 
         foreach ($order->getOrderDetails()->getValues() as $product) {
+            // Pour chaques commandes je récupères les valeurs du détails de la commande par article
             $product_object = $entityManager->getRepository(Product::class)->findOneByName($product->getProduct());
             $products_for_stripe[] = [
                 'price_data' => [
@@ -40,6 +47,7 @@ class StripeController extends AbstractController
               ],
                 'quantity' => $product->getQuantity(),
             ];
+            // On rempli le tableau avec les valeurs pour chaques articles  (prix, nom, image, quantité)
         }
 
         $products_for_stripe[] = [
@@ -53,6 +61,7 @@ class StripeController extends AbstractController
           ],
             'quantity' => 1,
         ];
+        // On rempli le tableau avec les valeurs de livraison choisi  (prix, nom, quantité = toujours à un car un seul transporteur )
 
         // Système de paiement Stripe :
         Stripe::setApiKey('sk_test_51L6amqAgDjI611jf49n3RURuEVn6KbawPxt0CKby4wsENM9plWmKeqkq7Cm3Sl1W4JcvjewbvVCBrwyA5knu6b2500QdV5lalL');
@@ -64,6 +73,7 @@ class StripeController extends AbstractController
                         'line_items' => [
                             $products_for_stripe,
                           ],
+                        // Je passe à stripe toutes les valeurs récupérer plus haut dans mon foreach
                         'mode' => 'payment',
                         'success_url' => $YOUR_DOMAIN.'/commande/merci/{CHECKOUT_SESSION_ID}',
                         'cancel_url' => $YOUR_DOMAIN.'/commande/erreur/{CHECKOUT_SESSION_ID}',

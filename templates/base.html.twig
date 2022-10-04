@@ -26,7 +26,7 @@
 /* Fermer le popup */
 "showIcon": true,
 /* Montrer l'icone cookie */
-// "iconSrc": "", /* Optionnal: URL or base64 encoded image */
+// "iconSrc": "", /* Optionnel: URL ou base64 image encodé */
 "iconPosition": "BottomLeft",
 /* BottomRight, BottomLeft, TopRight and TopLeft */
 "adblocker": false,
@@ -73,8 +73,13 @@ tarteaucitron.services.mycustomservice = {
 };
 		</script>
 		<meta charset="utf-8">
+		{#} Encodage des caractères à destination des navigateurs existe aussi (ISO-8859-1) pour HTML 4 et XHTML {#}
+
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		{#} Zone de la fenêtre dans laquelle le contenu web peut être vu {#}
+
 		<meta name="description" content="Boutique en ligne vêtements et accessoires">
+		{#} Balise meta description permets d'informer les moteurs de recherche ainsi que les internautes du contenu de la page indexer (mots clefs) {#}
 		<title>
 			{% block title %}RaveShop - Positive Attitude
 			{% endblock %}
@@ -84,9 +89,13 @@ tarteaucitron.services.mycustomservice = {
 		<link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
 		<link
 		href="{{ asset('assets/css/custom.css')}}" rel="stylesheet">
+		{#} Définit une feuille de style alternative ou une feuille de style préférée {#}
+
 		<!-- Icone onglet -->
 		<link rel="icon" href="{{ asset('assets/img/logo.png')}}">
-		 {% block javascript %}{% endblock %}
+		{#} Asset permet de générer une url basée sur le dossier "public" de façon automatique {#}
+		 {% block javascript %}
+		 {% endblock %}
 
 		</head>
 
@@ -96,6 +105,7 @@ tarteaucitron.services.mycustomservice = {
 				<nav>
 					<div>
 						<a href="{{ path('app_home') }}"><img src="{{ asset('assets/img/logo.png')}}" alt="logo" class="logo"></a>
+						{#} La fonction path() et en utilisant le nom de la route choisie au moment de sa création {#}
 						<i class="fa-solid fa-bars fa-2xl dnone" id="burger"></i>
 					</div>
 					<ul id="menu1">
@@ -105,6 +115,7 @@ tarteaucitron.services.mycustomservice = {
 					</ul>
 					<ul id="menu2">
 						{% if not app.user %}
+						{#} Si aucun utilisateur est connecter {#}
 							<li>
 								<a href="{{ path('app_login') }}">Connexion</a>
 							</li>
@@ -113,6 +124,7 @@ tarteaucitron.services.mycustomservice = {
 							</li>
 						{% else %}
 							{% if is_granted("ROLE_ADMIN") %}
+							{#} Si l'utilisateur à le role d'Administrateur {#}
 								<li>
 									<a href="{{ path('admin') }}">ADMIN</a>
 								</li>
@@ -120,6 +132,7 @@ tarteaucitron.services.mycustomservice = {
 							<li>
 								<a href="{{ path('app_cart')}}">
 									<i class="fa-solid fa-basket-shopping"></i><span id="bulle">{{ CartService.CartQuantity }}</span>
+									{#} On appelle le cart service pour afficher le nombre de produit dans le panier garce à la fonction CartQuantity{#}
 								</a>
 							</li>
 							<li>
@@ -163,6 +176,7 @@ tarteaucitron.services.mycustomservice = {
 					<div class="list-footer">
 						<a target="_blank" href="https://www.facebook.com/" alt="Facebook">
 							<i class="fa-brands fa-facebook"></i>
+							{#} Lien externe qui s'ouvre dans un nouvel onglet grace à target _blank {#}
 						</a>
 						<a target="_blank" href="https://www.instagram.com/" alt="Instagram">
 							<i class="fa-brands fa-instagram"></i>

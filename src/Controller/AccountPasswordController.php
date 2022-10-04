@@ -22,7 +22,7 @@ class AccountPasswordController extends AbstractController
     /**
      * @Route("/compte/modifier-mon-mot-de-passe", name="app_account_password")
      */
-    public function index(Request $request, UserPasswordHasherInterface $encoder, EntityManagerInterface $entityManager): Response
+    public function index(Request $request, UserPasswordHasherInterface $encoder): Response
     {
         $notification = null;
         $user = $this->getUser();

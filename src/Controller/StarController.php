@@ -23,18 +23,17 @@ class StarController extends AbstractController
      *
      * @ParamConverter("product", options={"mapping": {"slug" : "slug"}})
      * @ParamConverter("note", options={"mapping": {"note" : "note"}})
+     * Cette technique permet d'utiliser les tables d'une base de donnée comme des objets
      */
     public function Star(Product $product, int $note)
     {
         $star = new Star(); // Crée le vote
-        $star->setProduct($product);
-        $star->setUser($this->getUser());
-        $star->setNote($note);
+        $star->setProduct($product); // Parametre l'id du produit
+        $star->setUser($this->getUser()); // Parametre l'user
+        $star->setNote($note); // Parametre la note
 
         $this->entityManager->persist($star);
         $this->entityManager->flush();
-
-        $this->addFlash('sucess', 'Votre vote a bien été pris en compte !');
 
         return $this->redirectToRoute('product', [
             'slug' => $product->getSlug(),
