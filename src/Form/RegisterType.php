@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -79,6 +80,11 @@ class RegisterType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Merci de confirmer votre mot de passe',
                 ],
+            ])
+            ->add('CGU', CheckboxType::class, [
+                'label' => "En cochant cette case vous accepter nos Conditions général d'utilisation",
+                'mapped' => false,
+                'required' => true,
             ])
 
             ->add('submit', SubmitType::class, [
