@@ -71,7 +71,7 @@ class Product
     private $promotion;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="products", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="products")
      */
     private $comments;
 

@@ -20,6 +20,7 @@ class Cart
     public function getFullCart()
     {
         $cartComplete = [];
+        // J'instancie un tableau vide
         if ($this->get()) {
             // $this -> accède à la méthode get dans la meme classe
             foreach ($this->get() as $id => $quantity) {
@@ -35,6 +36,7 @@ class Cart
                 'product' => $product_object,
                 'quantity' => $quantity,
             ];
+                // Tableau avec ratio produit quantité
             }
         }
 
@@ -89,5 +91,6 @@ class Cart
         }
 
         return $this->session->set('cart', $cart);
+        // Retourne le panier avec la quantité modifié
     }
 }

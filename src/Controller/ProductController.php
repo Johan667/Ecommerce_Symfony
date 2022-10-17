@@ -34,16 +34,20 @@ class ProductController extends AbstractController
         // J'utilise l'entityManager pour aller dans le repository produits et tous les trouver
 
         $search = new Search();
+        // Nouvelle instance de l'objet Search
 
         $formSearch = $this->createForm(SearchType::class);
+        // Je crée le formulaire SearchType lié à la classe Search
 
         $formSearch->handleRequest($request);
+        // Prise en charge du traitement du formulaire
 
         if ($formSearch->isSubmitted() && $formSearch->isValid()) {
+            // Si le formulaire de recherche est soumis et qu'il est valide
             $search = $formSearch->getData();
+            // On récupere les données
             $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search);
-
-            // dd($search);
+            // On cherche les produits grace à la fonction findWithSearch du repository product
         }
 
         return $this->render('product/index.html.twig', [
@@ -60,8 +64,9 @@ class ProductController extends AbstractController
     {
         $product = $this->entityManager->getRepository(Product::class)->findOneBySlug($slug);
         $products = $this->entityManager->getRepository(Product::class)->findByBestseller(1);
-        $stars = $this->entityManager->getRepository(Star::class)->findVote($this->getUser()->getId(), $product->getId());
-
+        if ($this->getUser()) {
+            $stars = $this->entityManager->getRepository(Star::class)->findVote($this->getUser()->getId(), $product->getId());
+        }
         if (!$product) {
             return $this->redirectToRoute('products');
         }
@@ -72,19 +77,10 @@ class ProductController extends AbstractController
         $commentForm->handleRequest($request);
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             $comment->setCreatedAt(new DateTimeImmutable());
+            $comment->setUsers($this->getUser());
             $comment->setProducts($product);
-
-            // On récupère le contenu du champ parentid
-            $parentId = $commentForm->get('parentid')->getData();
-
-            if ($parentId != null) {
-                // On va chercher le commentaire correspondant
-                $parent = $this->entityManager->getRepository(Comments::class)->find($parentId);
-            }
-
-            // On définit le parent
-            $comment->setParent($parent ?? null);
-            // Si c'est parent alors c'est $parent sinon c'est null
+            $comment->setContent($commentForm->get('content')->getData());
+            $comment->setActive(false);
 
             $this->entityManager->persist($comment);
             $this->entityManager->flush();
@@ -92,6 +88,9 @@ class ProductController extends AbstractController
 
             return $this->redirectToRoute('product', ['slug' => $product->getSlug()]);
         }
+        $commentsList = $this->entityManager->getRepository(Comments::class)->findBy(
+            ['products' => $product->getId(), 'active' => true], ['created_at' => 'DESC']
+        );
 
         return $this->render('product/show.html.twig', [
             'product' => $product,
@@ -99,7 +98,9 @@ class ProductController extends AbstractController
             'products' => $products,
             // products avec un 's' sera tous les bestseller
             'commentForm' => $commentForm->createView(),
-            'stars' => $stars,
+            'stars' => isset($stars) ? $stars : null,
+            // afficher la liste des commentaire
+            'commentsList' => $commentsList,
         ]);
     }
 
@@ -114,5 +115,17 @@ class ProductController extends AbstractController
             'products' => $products,
             'category' => $category,
         ]);
+    }
+
+    /**
+     * @Route("/comment/delete/{id}", name="del_comment")
+     */
+    public function delComment(Comments $comments, Request $request)
+    {
+        $this->entityManager->remove($comments);
+        $this->entityManager->flush();
+        $this->addFlash('sucess', 'Votre commentaire a bien été supprimé !');
+
+        return $this->redirect($request->headers->get('referer'));
     }
 }

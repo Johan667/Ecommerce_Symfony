@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\CommentsRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,44 +25,22 @@ class Comments
     /**
      * @ORM\Column(type="boolean")
      */
-    private $active = false;
-    // Les commentaires sont à false pour permettre la modération
+    private $active;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
      */
-    private $email;
+    private $users;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="comments")
      */
-    private $nickname;
+    private $products;
 
     /**
      * @ORM\Column(type="datetime_immutable")
      */
     private $created_at;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $products;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Comments::class, inversedBy="replies")
-     */
-    private $parent;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="parent")
-     */
-    private $replies;
-
-    public function __construct()
-    {
-        $this->replies = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -95,38 +71,14 @@ class Comments
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function getUsers(): ?User
     {
-        return $this->email;
+        return $this->users;
     }
 
-    public function setEmail(string $email): self
+    public function setUsers(?User $users): self
     {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getNickname(): ?string
-    {
-        return $this->nickname;
-    }
-
-    public function setNickname(string $nickname): self
-    {
-        $this->nickname = $nickname;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
-    {
-        $this->created_at = $created_at;
+        $this->users = $users;
 
         return $this;
     }
@@ -143,45 +95,20 @@ class Comments
         return $this;
     }
 
-    public function getParent(): ?self
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->parent;
+        return $this->created_at;
     }
 
-    public function setParent(?self $parent): self
+    public function setCreatedAt(\DateTimeImmutable $created_at): self
     {
-        $this->parent = $parent;
+        $this->created_at = $created_at;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, self>
-     */
-    public function getReplies(): Collection
+    public function __toString(): string
     {
-        return $this->replies;
-    }
-
-    public function addReply(self $reply): self
-    {
-        if (!$this->replies->contains($reply)) {
-            $this->replies[] = $reply;
-            $reply->setParent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeReply(self $reply): self
-    {
-        if ($this->replies->removeElement($reply)) {
-            // set the owning side to null (unless already changed)
-            if ($reply->getParent() === $this) {
-                $reply->setParent(null);
-            }
-        }
-
-        return $this;
+        return $this->content;
     }
 }

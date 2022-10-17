@@ -66,13 +66,13 @@ class RegisterType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Merci de saisir votre mot de passe',
                 ],
-                // 'constraints' => [
-                //     new Regex([
-                //         'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
-                //         'match' => true,
-                //         'message' => 'Le mot de passe doit contenir : min 8 caractère, un nombre, une minuscule, une majuscule et un caractère spécial',
-                //     ]),
-                // ],
+                'constraints' => [
+                    new Regex([
+                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
+                        'match' => true,
+                        'message' => 'Le mot de passe doit contenir : min 8 caractère, un nombre, une minuscule, une majuscule et un caractère spécial',
+                    ]),
+                ],
                 'invalid_message' => 'Le mot de passe et la confirmation doivent être identiques',
                 'required' => true,
                 'first_options' => ['label' => 'Mot de passe'],

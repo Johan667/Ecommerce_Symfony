@@ -90,17 +90,5 @@ window.onload = () => {
         }
     }
 
-        /** COMMENTAIRES */
-
-        document.querySelectorAll("[data-reply]").forEach(element => {
-            // J'initialise un ecouteur d'evenements sur les boutons de réponse
-            element.addEventListener("click", function () {
-                // Recupere le contexte de l'élément
-                document.getElementById("comments_parentid").value = this.dataset.id;
-            });
-        });
-
-    
-
 }
 

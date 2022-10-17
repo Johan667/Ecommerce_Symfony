@@ -7,7 +7,6 @@ use App\Entity\Order;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class OrderSuccessController extends AbstractController
@@ -22,7 +21,7 @@ class OrderSuccessController extends AbstractController
     /**
      * @Route("/commande/merci/{stripeSessionId}", name="order_success")
      */
-    public function index(MailerInterface $mailer, Cart $cart, $stripeSessionId): Response
+    public function index(Cart $cart, $stripeSessionId): Response
     {
         $order = $this->entityManager->getRepository(Order::class)->findOneByStripeSessionId($stripeSessionId);
         if (!$order || $order->getUser() != $this->getUser()) {

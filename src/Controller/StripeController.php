@@ -36,10 +36,13 @@ class StripeController extends AbstractController
         foreach ($order->getOrderDetails()->getValues() as $product) {
             // Pour chaques commandes je récupères les valeurs du détails de la commande par article
             $product_object = $entityManager->getRepository(Product::class)->findOneByName($product->getProduct());
+            // Je recupères le repository Product, je récupere un produit par son nom
             $products_for_stripe[] = [
                 'price_data' => [
                     'currency' => 'eur',
+                    // devise
                     'unit_amount' => $product->getPrice(),
+                    // prix unitaire
                     'product_data' => [
                       'name' => $product->getProduct(),
                       'images' => [$YOUR_DOMAIN.'/uploads/'.$product_object->getIllustration()],
@@ -69,6 +72,7 @@ class StripeController extends AbstractController
 
         $checkout_session = Session::create([
                         'customer_email' => $this->getUser()->getEmail(),
+                        // J'identifie le client par son email
                         'payment_method_types' => ['card'],
                         'line_items' => [
                             $products_for_stripe,

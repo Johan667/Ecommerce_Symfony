@@ -1,134 +1,131 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}RaveShop -
-	{{ product.name }}
+{{ product.name }}
 {% endblock %}
 
 {% block content %}
-	<div class="wrapper">
-		<div class="row">
-			<div class="col-md-5">
-				<small>
-					<a href="{{ path('app_home') }}">Accueil</a>
-					/
-					<a href="{{ path('products')}}">Touts les produits</a>
-					/
-					{{ product.name }}</small>
-				<img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid">
-			</div>
-			<div class="col-md-7 my-auto">
-				<h3>
-					{{ product.name }}
-				</h3>
-				{% if stars is null %}
-					<form action="" method="post">
-						<div class="stars">
-							<a href="{{ path("app_star", {'slug': product.slug, 'note': 1 }) }}">
-								<i class="fa-sharp fa-solid fa-star" id="note"></i>
-							</a>
-							<a href="{{ path("app_star", {'slug': product.slug, 'note': 2 }) }}">
-							<i class="fa-sharp fa-solid fa-star" id="note"></i>
-							</a>
-							<a href="{{ path("app_star", {'slug': product.slug, 'note': 3 }) }}">
-							<i class="fa-sharp fa-solid fa-star" id="note"></i>
-							</a>
-							<a href="{{ path("app_star", {'slug': product.slug, 'note': 4 }) }}">
-							<i class="fa-sharp fa-solid fa-star" id="note"></i>
-							</a>
-							<a href="{{ path("app_star", {'slug': product.slug, 'note': 5 }) }}">
-							<i class="fa-sharp fa-solid fa-star" id="note"></i><br>
-							</a>
-							<input type="hidden" name="note" id="note" data-value="0"></input>
-					</form>
-				{% endif %}
-				{% if app.user %}
-					{% if stars.note is defined %}
-						Votre note :
-						{{ stars.note }} <br>
-						Sur<small>
-							xx note(s)</small><br>
-					{% endif %}
-				{% endif %}
-				<p>{{ product.subtitle }}</p>
-				<p>{{ product.description }}</p>
-				<span class="product-show-price">{{ (product.price / 100) | number_format(2, ',','.') }}€</span><br>
+<div class="wrapper">
+	<div class="row">
+		<div class="col-md-5">
+			<small>
+				<a href="{{ path('app_home') }}">Accueil</a>
+				/
+				<a href="{{ path('products')}}">Touts les produits</a>
+				/
+				{{ product.name }}</small>
+			<img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid">
+		</div>
+		<div class="col-md-7 my-auto">
+			<h3>
+				{{ product.name }}
+			</h3>
+			{% if stars is null %}
+			<form action="" method="post">
+				<div class="stars">
+					<a href="{{ path("app_star", {'slug': product.slug, 'note': 1 }) }}">
+						<i class="fa-sharp fa-solid fa-star" id="note"></i>
+					</a>
+					<a href="{{ path("app_star", {'slug': product.slug, 'note': 2 }) }}">
+						<i class="fa-sharp fa-solid fa-star" id="note"></i>
+					</a>
+					<a href="{{ path("app_star", {'slug': product.slug, 'note': 3 }) }}">
+						<i class="fa-sharp fa-solid fa-star" id="note"></i>
+					</a>
+					<a href="{{ path("app_star", {'slug': product.slug, 'note': 4 }) }}">
+						<i class="fa-sharp fa-solid fa-star" id="note"></i>
+					</a>
+					<a href="{{ path("app_star", {'slug': product.slug, 'note': 5 }) }}">
+						<i class="fa-sharp fa-solid fa-star" id="note"></i><br>
+					</a>
+					<input type="hidden" name="note" id="note" data-value="0"></input>
+			</form>
+			{% endif %}
+			{% if app.user %}
+			{% if stars.note is defined %}
+			Votre note :
+			{{ stars.note }} <br>
+			Sur<small>
+				xx note(s)</small><br>
+			{% endif %}
+			{% endif %}
+			<p>{{ product.subtitle }}</p>
+			<p>{{ product.description }}</p>
+			<span class="product-show-price">{{ (product.price / 100) | number_format(2, ',','.') }}€</span><br>
 
-				<a href="{{ path('add_to_cart', { id : product.id })}}" class="button-custom">Ajouter au panier</a>
-				<!-- Button trigger modal -->
-				<button type="button" class="button-custom" data-toggle="modal" data-target="#exampleModal">
-					Voir les commentaires
-				</button>
+			<a href="{{ path('add_to_cart', { id : product.id })}}" class="button-custom">Ajouter au panier</a>
+			<!-- Button trigger modal -->
+			<button type="button" class="button-custom" data-toggle="modal" data-target="#exampleModal">
+				Voir les commentaires
+			</button>
 
-				<!-- Modal -->
-				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Commentaire
-									{{ product.name }}</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								{% for comment in product.comments %}
-									{% if comment.parent == null %}
-										<p>Publié par
-											<strong>{{ comment.nickname }}</strong>,<small>
-												Le
-												{{ comment.createdAt | date("d/m/Y H:i")}}</small>
-										</p>
-										{{ comment.content }}
-										<p>
-											<a class="button-custom" href="#ajouter-commentaire" data-reply data-id="{{ comment.id }}">Répondre</a>
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Commentaire
+								{{ product.name }}</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+								{% for comment in commentsList %}
+								<p class="p-auto"><i class="fa-solid fa-circle-user"></i>
+									<strong>{% if comment.users is null %} Profil supprimer 
+									{#} Anonymisation -> Si l'id de l'utilisateur est nul on indique que le profil est supprimer {#}
+									{% else %}
+									{{ comment.users.fullName }}</strong> 
+									{% endif %}
+									({{ comment.createdAt|date('d-m-Y') }}) : <br>
+									{{ comment }}
+									{% if app.user is same as(comment.users) %}
+									<br><a href="{{ path("del_comment", {'id':comment.id}) }}">Supprimer</a>
+									{% endif %}
+								</p>
+								{% endfor %}
 
-											{# On affiche les réponses au commentaires #}
-											{% for reply in comment.replies %}
-												<p>Réponse publié par
-													<strong>{{ reply.nickname }}</strong>,<small>
-														Le
-														{{ reply.createdAt | date("d/m/Y H:i")}}</small>
-												</p>
-												{{ reply.content }}
-											{% endfor %}
-										{% endif %}
-									{% endfor %}
-									<hr>
-									<h2 class="text-center">
-										Ajouter un commentaire
-									</h2>
-									{{ form(commentForm)}}
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="button-custom" data-dismiss="modal">Fermer</button>
 
-									</div>
-								</div>
-							</div>
+							<hr>
+							<h2 class="text-center">
+								{% if app.user %}
+								{{ form(commentForm)}}
+								{% endif %}
+							</h2>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="button-custom" data-dismiss="modal">Fermer</button>
+
 						</div>
 					</div>
 				</div>
-
-
-				<div class="bestsellers">
-					<h2 class="line">Nos Bestsellers</h2>
-
-					<p id="p-home">Vous pourriez aussi aimer</p>
-					<div class="row">
-						{% for product in products %}
-							<div class="col-md-3">
-								{% include 'product/single_product.html.twig' %}
-							</div>
-						{% endfor %}
-					</div>
-				</div>
 			</div>
+		</div>
+	</div>
 
-		{% endblock %}
-		{% block javascript %}
-			<script>
-				$('#myModal').on('shown.bs.modal', function () {
-$('#myInput').trigger('focus')
-})
-			</script>
-		{% endblock %}
+
+	<div class="bestsellers">
+		<h2 class="line">Nos Bestsellers</h2>
+
+		<p id="p-home">Vous pourriez aussi aimer</p>
+		<div class="row">
+			{% for product in products %}
+			<div class="col-md-3">
+				{% include 'product/single_product.html.twig' %}
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+{% block javascript %}
+<script>
+	$('#myModal').on('shown.bs.modal', function () {
+		$('#myInput').trigger('focus')
+	})
+</script>
+{% endblock %}

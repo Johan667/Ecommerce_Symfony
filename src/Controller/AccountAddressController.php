@@ -34,9 +34,12 @@ class AccountAddressController extends AbstractController
     public function add(Cart $cart, Request $request): Response
     {
         $address = new Address();
+        // Instancie une nouvelle adresse
+
         $formAddress = $this->createForm(AddressType::class, $address);
 
         $formAddress->handleRequest($request);
+        // prise en charge du traitement du formulaire
 
         if ($formAddress->isSubmitted() && $formAddress->isValid()) {
             $address->setUser($this->getUser());
