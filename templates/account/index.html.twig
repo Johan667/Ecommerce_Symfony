@@ -4,27 +4,61 @@
 
 {% block content %}
 <div class="wrapper">
-<h1 class="text-center mt-3 ">Mon Compte</h1>
-{% if is_granted('ROLE_ADMIN') %}
-{#} Si l'utilisateur à le rôle admin {#}
-<small><a href="{{ path('admin')}}">Vous êtes administrateur, cliquez ici pour accéder au back-office</a></small><br>
-{% endif %}
-<p class="text-center mt-3">Bienvenue dans votre compte <b>{{ app.user.firstname }}</b> !<br>
-Ici vous pouvez modifier toutes les informations relatives à votre compte.</p><br>
-<hr>
-<div class="row">
-    <div class="col-md-4">
-        <div class="account-item"><a href="{{ path('app_account_password') }}"><i class="fa-solid fa-unlock"></i> Modifier mon mot de passe</a></div>
+    <h1 class="text-center mt-3 ">Mon Compte</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+    {#} Si l'utilisateur à le rôle admin {#}
+    <small><a href="{{ path('admin')}}">Vous êtes administrateur, cliquez ici pour accéder au
+            back-office</a></small><br>
+    {% endif %}
+    <p class="text-center mt-3">Bienvenue dans votre compte <b>{{ app.user.firstname }}</b> !<br>
+        Ici vous pouvez modifier toutes les informations relatives à votre compte.</p><br>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="account-item"><a href="{{ path('app_account_password') }}"><i class="fa-solid fa-unlock"></i>
+                    Modifier mon mot de passe</a></div>
+        </div>
+        <div class="col-md-4">
+            <div class="account-item"><a href="{{ path('app_account_address') }}"><i class="fa-solid fa-house-user"></i>
+                    Modifier mes adresses</a></div>
+        </div>
+        <div class="col-md-4">
+            <div class="account-item"><a href="{{ path('app_account_order') }}"><i class="fa-solid fa-bag-shopping"></i>
+                    Mes commandes</a></div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <div class="account-item"><a href="{{ path('app_account_address') }}"><i class="fa-solid fa-house-user"></i> Modifier mes adresses</a></div>
-    </div>
-    <div class="col-md-4">
-        <div class="account-item"><a href="{{ path('app_account_order') }}"><i class="fa-solid fa-bag-shopping"></i> Mes commandes</a></div>
-    </div>
-</div>
+    <div class="row">
+        <div class="col-2 mt-3">
+            <button type="button" class="button-custom" data-toggle="modal" data-target="#exampleModal">
+                Supprimer mon compte
+            </button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Supprimer compte</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Etes vous sur vous voulez supprimer votre compte ?<br> Il sera perdu à jamais.</p>
+                            <a href="{{path('delete_account')}}" class="mya btn-danger">oui</a>
+                            <a href="{{path('app_account')}}" class="mya btn-account">non</a>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="button-custom" data-dismiss="modal">Fermer</button>
 
-</hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </hr>
 </div>
 
 

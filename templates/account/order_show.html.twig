@@ -19,11 +19,11 @@
     <div class="col-md-4">
       <strong>Statut de la commande:</strong>
       {% if order.state == 1 %}
-      <span class="badge badge-primary">Paiement Accepté</span>
+      <span class="badge bg-primary">Paiement Accepté</span>
       {% elseif order.state == 2 %}
-      <span class="badge badge-secondary">En cours de préparation</span>
+      <span class="badge bg-secondary">En cours de préparation</span>
       {% elseif order.state == 3 %}
-      <span class="badge badge-success">En cours de livraison</span>
+      <span class="badge bg-success">En cours de livraison</span>
       {% endif %}
       <br>
     </div>

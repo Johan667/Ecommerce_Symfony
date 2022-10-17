@@ -147,6 +147,15 @@ tarteaucitron.services.mycustomservice = {
 						{% endif %}
 					</ul>
 				</nav>
+				{% for message in app.flashes("message") %}
+
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+
+            {{message}}
+
+            </div>
+
+        {% endfor %}
 			</header>
 			<main>
 				{% block content %}{% endblock %}

@@ -84,7 +84,8 @@ class ProductController extends AbstractController
 
             $this->entityManager->persist($comment);
             $this->entityManager->flush();
-            $this->addFlash('notice', 'votre commentaire a bien été envoyé, il sera visible après modération');
+
+            $this->addFlash('message', 'Votre commentaire a bien été envoyé, il sera visible après modération');
 
             return $this->redirectToRoute('product', ['slug' => $product->getSlug()]);
         }
