@@ -126,7 +126,7 @@ tarteaucitron.services.mycustomservice = {
 							{% if is_granted("ROLE_ADMIN") %}
 							{#} Si l'utilisateur à le role d'Administrateur {#}
 								<li>
-									<a href="{{ path('admin') }}">ADMIN</a>
+									<a href="{{ path('admin') }}" target="_blank">ADMIN</a>
 								</li>
 							{% endif %}
 							<li>

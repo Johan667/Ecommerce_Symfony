@@ -81,7 +81,7 @@ header nav ul li a {
 }
 
 header nav ul li a:hover {
-    color: orange;
+    color: #0ad6ff;
     transition: all 0.3s ease-in;
     text-decoration: none;
 }
@@ -133,42 +133,6 @@ header nav ul li a:hover {
   }
 
 
-
-
-@media screen and (min-width:820px) {
-    #burger {
-        display: none;
-    }
-
-}
-
-@media screen and (max-width:820px) {
-    header nav {
-        flex-wrap: wrap;
-    }
-
-    header nav ul {
-        display: none;
-        flex-direction: column;
-        height: 250px;
-        justify-content: space-evenly;
-    }
-
-    header nav div {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        width: 100%;
-    }
-    #article-newsletter, .title-h2{
-        display:none;
-    }
-
-    #burger {
-        display: block;
-    }
-}
-
 /* END HEADER */
 
 /* MAIN */
@@ -195,13 +159,23 @@ article{
     align-items: baseline;
     margin:20px 10%;
     background-color: #ccff00;
-    max-width: 1500px;
+    max-width: 100%;
     margin: auto;
 }
 
 article:hover{
     background-color:orange;
 }
+.newsletter {
+    background-color: rgba(70, 46, 255, 0.56);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
 
 #news-title, #what, #go{
     display: flex;
@@ -231,23 +205,15 @@ article:hover{
 
 #p-home {
     text-align: center;
-    color: orange;
+    color: #0ad6ff;
 }
 
 .home-container {
     display: flex;
     flex-direction: row
 }
-.newsletter {
-    background-color: rgba(70, 46, 255, 0.56);
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-  }
+
+
 
 #banner{
     background-image: url('https://images.pexels.com/photos/2224399/pexels-photo-2224399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');;
@@ -259,7 +225,7 @@ article:hover{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: rgba(70, 46, 255, 0.56) -10px 2px 11px;
+    box-shadow: #0ad6ff -10px 2px 11px;
 }
 
 #banner *{
@@ -426,6 +392,12 @@ article:hover{
     color: white;
 }
 
+#list-footer ul li a:hover {
+    text-decoration: underline;
+    text-decoration-color: orange;
+}
+
+
 @media screen and (min-width: 950px) {
     .container-footer {
         display: flex;
@@ -449,9 +421,9 @@ article:hover{
     max-width: 1300px;
     margin: auto;
     background: black;
-    -webkit-box-shadow: 0px 0px 36px 9px rgba(70, 46, 255, 0.56);
-    -moz-box-shadow: 0px 0px 36px 9px rgba(70, 46, 255, 0.56);
-    box-shadow: 0px 0px 36px 9px rgba(70, 46, 255, 0.56);
+    -webkit-box-shadow: 0px 0px 36px 9px #0ad6ff;
+    -moz-box-shadow: 0px 0px 36px 9px #0ad6ff;
+    box-shadow: 0px 0px 36px 9px #0ad6ff;
     padding: 3em;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -460,7 +432,7 @@ article:hover{
 
 .card-cat {
 
-    box-shadow: 0px 0px 1px 2px rgba(70, 46, 255, 0.56);
+    box-shadow: 0px 0px 1px 2px #0ad6ff;
     width: 100%;
     height: auto;
     position: relative;
@@ -480,7 +452,7 @@ img {
     -ms-transform:scale(1.10); /* Internet Explorer 9 */
     -o-transform:scale(1.10); /* Opera */
     transform:scale(1.10);
-    border: solid 1px orange;
+    border: solid 1px #ff5aac;
     }
 /* Centered text */
 .centered {
@@ -560,10 +532,47 @@ margin-bottom:2rem;
     vertical-align : top; 
     padding-top : 14px; 
     padding-bottom : 14px; 
-    box-shadow: rgba(70, 46, 255, 0.56) -10px 2px 11px;
+    box-shadow: #0ad6ff -10px 2px 11px;
 }
 .panier-vide{
     max-width: 600px;
     height: auto;
     display: flex;
+}
+
+
+/** Responsive **/ 
+
+@media screen and (min-width:820px) {
+    #burger {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width:820px) {
+    header nav {
+        flex-wrap: wrap;
+    }
+
+    header nav ul {
+        display: none;
+        flex-direction: column;
+        height: 250px;
+        justify-content: space-evenly;
+    }
+
+    header nav div {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+    }
+    #article-newsletter, .title-h2{
+        display:none;
+    }
+
+    #burger {
+        display: block;
+    }
 }
