@@ -44,9 +44,7 @@
 			{% if app.user %}
 			{% if stars.note is defined %}
 			Votre note :
-			{{ stars.note }} <br>
-			Sur<small>
-				xx note(s)</small><br>
+			{{ stars.note }} &nbsp; <i class="fa-solid fa-star"></i><br>
 			{% endif %}
 			{% endif %}
 			<p>{{ product.subtitle }}</p>
@@ -72,20 +70,20 @@
 							</button>
 						</div>
 						<div class="modal-body">
-								{% for comment in commentsList %}
-								<p class="p-auto"><i class="fa-solid fa-circle-user"></i>
-									<strong>{% if comment.users is null %} Profil supprimer 
+							{% for comment in commentsList %}
+							<p class="p-auto"><i class="fa-solid fa-circle-user"></i>
+								<strong>{% if comment.users is null %} Profil supprimer
 									{#} Anonymisation -> Si l'id de l'utilisateur est nul on indique que le profil est supprimer {#}
 									{% else %}
-									{{ comment.users.fullName }}</strong> 
-									{% endif %}
-									({{ comment.createdAt|date('d-m-Y') }}) : <br>
-									{{ comment }}
-									{% if app.user is same as(comment.users) %}
-									<br><a href="{{ path("del_comment", {'id':comment.id}) }}">Supprimer</a>
-									{% endif %}
-								</p>
-								{% endfor %}
+									{{ comment.users.fullName }}</strong>
+								{% endif %}
+								({{ comment.createdAt|date('d-m-Y') }}) : <br>
+								{{ comment }}
+								{% if app.user is same as(comment.users) %}
+								<br><a href="{{ path("del_comment", {'id':comment.id}) }}">Supprimer</a>
+								{% endif %}
+							</p>
+							{% endfor %}
 
 
 							<hr>
@@ -120,6 +118,7 @@
 		</div>
 	</div>
 </div>
+
 
 {% endblock %}
 {% block javascript %}

@@ -129,9 +129,10 @@ tarteaucitron.services.mycustomservice = {
 									<a href="{{ path('admin') }}" target="_blank">ADMIN</a>
 								</li>
 							{% endif %}
-							<li>
-								<a href="{{ path('app_cart')}}">
-									<i class="fa-solid fa-basket-shopping"></i><span id="bulle">{{ CartService.CartQuantity }}</span>
+							<li>						
+									<a href="{{ path('app_cart')}}">
+									<i class="fa-solid fa-basket-shopping"></i>
+									<span id="bulle">{{ CartService.CartQuantity }}</span>
 									{#} On appelle le cart service pour afficher le nombre de produit dans le panier garce à la fonction CartQuantity{#}
 								</a>
 							</li>

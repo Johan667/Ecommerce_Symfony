@@ -3,10 +3,10 @@
 {% block title %}RaveShop - Mon Panier{% endblock %}
 
 {% block content %}
-<div class="block-small">
-  <h1>Mon Panier</h1>
-  Retrouvez les produits que vous avez ajouté à votre panier !
 
+  <h1 class="ml-3">Mon Panier</h1>
+  <p class="ml-3">Retrouvez les produits que vous avez ajouté à votre <em>panier</em> !</p>
+<div class="panier">
   {% if cart | length > 0 %}
   {#} Si dans le panier il y à plus que 0 article{#}
   <table class="table mt-3">
@@ -45,7 +45,7 @@
         <td>{{ ((product.product.price * product.quantity ) / 100) | number_format(2, ',','.') }} €</td>
         <td>
           <a href="{{ path('delete_my_product', { 'id' : product.product.id })}}">
-            <img src="{{ asset('assets/img/delete.png')}}" alt="supprimer">
+            <i class="fa-solid fa-trash"></i>
           </a>
         </td>
 
