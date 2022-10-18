@@ -1,7 +1,6 @@
 * {
     box-sizing: border-box;
     margin: auto;
-
 }
 
 body {
@@ -30,8 +29,6 @@ main {
     align-items: center;
     position: relative;
 }
-
-
 
 /* Accueil */
 
@@ -104,16 +101,16 @@ header nav ul li a:hover {
     margin: 5px 2px;
 }
 
-#cgu{
-   margin-left: 98%;
+#cgu {
+    margin-left: 98%;
 }
 
 .fa:hover {
     opacity: 0.7;
 }
-.fa-star-of-life{
-    color:#ff5aac
 
+.fa-star-of-life {
+    color: #ff5aac
 }
 
 .fa-facebook {
@@ -133,11 +130,16 @@ header nav ul li a:hover {
 .fa-star {
     color: gold;
 }
-.fa-cart-shopping, .fa-truck-fast, .fa-thumbs-up, .fa-credit-card{
-    color:#0ad6ff;
+
+.fa-cart-shopping,
+.fa-truck-fast,
+.fa-thumbs-up,
+.fa-credit-card {
+    color: #0ad6ff;
 }
-.fa-face-grin-hearts{
-    color:#ff5aac;
+
+.fa-face-grin-hearts {
+    color: #ff5aac;
 }
 
 .button-custom {
@@ -161,8 +163,6 @@ header nav ul li a:hover {
 .button-custom:hover {
     background-color: #0ad6ff;
 }
-
-/* END HEADER */
 
 /* MAIN */
 #img-accueil {
@@ -279,22 +279,20 @@ article:hover {
     z-index: 3;
 }
 
-.ariane-pay{
+.ariane-pay {
     list-style: none;
 }
 
-.ariane-pay li{
+.ariane-pay li {
     display: inline;
-    font-size: 1,5rem;
+    font-size: 1, 5rem;
     padding-left: 1rem;
-    padding-right:1rem;
+    padding-right: 1rem;
 }
 
-#stronger{
+#stronger {
     font-size: 2rem;
 }
-
-/* Login */
 
 .block-small {
     max-width: 600px;
@@ -331,7 +329,7 @@ article:hover {
     font-weight: bold;
 }
 
-.img-prod{
+.img-prod {
     max-height: 100px;
 }
 
@@ -341,7 +339,6 @@ article:hover {
     background-color: #f1f2f6;
     padding: 75px;
     text-align: center;
-
 }
 
 .account-item:hover {
@@ -447,7 +444,6 @@ article:hover {
     margin-left: 80%;
     margin-top: 2rem;
     margin-bottom: 1rem;
-
 }
 
 /* --- FOOTER --- */
@@ -460,14 +456,12 @@ article:hover {
     color: white;
     height: 170px;
     position: relative;
-
 }
 
 .list-footer ul li {
     list-style-type: none;
     text-decoration: none;
     text-transform: uppercase;
-
 }
 
 .list-footer ul li a {
@@ -602,7 +596,6 @@ img {
     display: flex;
 }
 
-
 /** Responsive **/
 
 @media screen and (min-width:820px) {
@@ -670,5 +663,4 @@ img {
         padding: 20px;
         bottom: 0;
     }
-
 }
