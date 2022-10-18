@@ -2,110 +2,110 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset("assets/css/pdf.css") }}">
-    <title>Facture référence n° {{ order.reference }}</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ asset("assets/css/pdf.css") }}">
+  <title>Facture référence n° {{ order.reference }}</title>
 </head>
 
 <body class="receipt-body">
- <div class="receipt-container">
-  <div class="receipt">
-    <div class="row">
-      <div class="col-7">
-        <img src="{{ asset('assets/img/logo.png')}}" class="logo">
+  <div class="receipt-container">
+    <div class="receipt">
+      <div class="row">
+        <div class="col-7">
+          <img src="{{ asset('assets/img/logo.png')}}" class="logo">
+        </div>
+        <div class="col-5">
+          <h1 class="document-type display-4">FACTURE</h1>
+          <p class="text-right"><strong>référence n° {{ order.reference }}</strong></p>
+        </div>
       </div>
-      <div class="col-5">
-        <h1 class="document-type display-4">FACTURE</h1>
-        <p class="text-right"><strong>référence n° {{ order.reference }}</strong></p>
+      <div class="row">
+        <div class="col-7">
+          <p>
+            <strong>RAVE SHOP</strong><br>
+            79 Route des Romains<br>
+            67200, Strasbourg<br>
+            FRANCE
+          </p>
+        </div>
+        <div class="col-5">
+          <br>
+          <p>
+            <strong>Livraison :</strong><br>
+            {{ order.delivery |raw }}<br>
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-7">
-        <p>
-          <strong>RAVE SHOP</strong><br>
-          79 Route des Romains<br>
-          67200, Strasbourg<br>
-          FRANCE
-        </p>
-      </div>
-      <div class="col-5">
-        <br>
-        <p>
-          <strong>Livraison :</strong><br>
-          {{ order.delivery |raw }}<br>
-        </p>
-      </div>
-    </div>
-    <br>
-    <h6>Facturé à </h6>
-    {{ order.user.firstname ~ " " ~ order.user.lastname }}<br>
-    <table class="table table-striped">
+      <br>
+      <h6>Facturé à </h6>
+      {{ order.user.firstname ~ " " ~ order.user.lastname }}<br>
+      <table class="table table-striped">
         <thead>
-            <tr>
-                <th>Produit</th>
-                <th>Prix</th>
-                <th>Quantité</th>
-                <th>Total</th>
-            </tr>
+          <tr>
+            <th>Produit</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Total</th>
+          </tr>
         </thead>
         {% set total = 0 %}
         <tbody>
-            <tr>
+          <tr>
             {% for detail in orderDetails %}
             <td>{{ detail.product }}</td>
             <td>{{ detail.price /100 }} €</td>
             <td> {{ detail.quantity }}</td>
-            {% endfor %}               
-                <td>{{ order.total / 100 }} €</td><br>
-            </tr>
+            {% endfor %}
+            <td>{{ order.total / 100 }} €</td><br>
+          </tr>
         </tbody>
-    </table>
-    <div class="row">
-      <div class="col-8">
+      </table>
+      <div class="row">
+        <div class="col-8">
+        </div>
+        <div class="col-4">
+          <table class="table table-sm text-right">
+            <tr>
+              <td><strong>Sous total</strong></td>
+              <td class="text-right">{{ (order.gettotal / 100)|number_format(2,',','.') }} €</td>
+            </tr>
+            <tr>
+              <td>Livraison</td>
+              <td class="text-right">{{ (order.carrerPrice / 100) }} €</td>
+            </tr>
+            <tr>
+              <td><strong>Total TTC</strong></td>
+              <td class="text-right">{{ ((order.getTotal + order.carrerPrice) / 100)|number_format(2,',',',') }} €</td>
+            </tr>
+          </table>
+        </div>
       </div>
-      <div class="col-4">
-        <table class="table table-sm text-right">
-          <tr>
-            <td><strong>Sous total</strong></td>
-            <td class="text-right">{{ (order.gettotal / 100)|number_format(2,',','.') }} €</td>
-          </tr>
-          <tr>
-            <td>Livraison</td>
-            <td class="text-right">{{ (order.carrerPrice / 100) }} €</td>
-          </tr>
-          <tr>
-            <td><strong>Total TTC</strong></td>
-            <td class="text-right">{{ ((order.getTotal + order.carrerPrice) / 100)|number_format(2,',',',') }} €</td>
-          </tr> 
-        </table>
-      </div>
-    </div>
-    
-    <p class="conditions">
-      En votre aimable règlement
-      <br>
-      Et avec nos remerciements.
-      <br><br>
-      Conditions de paiement : Comptant.
-      <br>
-      Aucun escompte consenti pour règlement anticipé.
-      <br>
-      Règlement par virement bancaire.
 
-    </p>
-    
-    <br>
-    
-    <p class="bottom-page text-right">
-      RAVE SHOP SAS - N° SIRET 8000000000000 RCS STRASBOURG<br>
-      79, Route des Romains - 67200 STRASBOURG 07 66 56 53 96 - www.raveur.fr<br>
-      Code APE 4791A (Vente à distance sur catalogue général) - N° TVA FR 77 808000000<br>
-    </p>
+      <p class="conditions">
+        En votre aimable règlement
+        <br>
+        Et avec nos remerciements.
+        <br><br>
+        Conditions de paiement : Comptant.
+        <br>
+        Aucun escompte consenti pour règlement anticipé.
+        <br>
+        Règlement par virement bancaire.
+
+      </p>
+
+      <br>
+
+      <p class="bottom-page text-right">
+        RAVE SHOP SAS - N° SIRET 8000000000000 RCS STRASBOURG<br>
+        79, Route des Romains - 67200 STRASBOURG 07 66 56 53 96 - www.raveur.fr<br>
+        Code APE 4791A (Vente à distance sur catalogue général) - N° TVA FR 77 808000000<br>
+      </p>
+    </div>
   </div>
-</div>
-    <h2>MERCI, ET A BIENTOT !</h2>
+  <h2>MERCI, ET A BIENTOT !</h2>
 
 </body>
 

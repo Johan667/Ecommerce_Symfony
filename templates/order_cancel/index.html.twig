@@ -5,12 +5,12 @@
 {% block content %}
 <h2>Erreur de paiement</h2>
 <p> Bonjour <strong>{{ order.user.firstname }} {{ order.user.lastname }}</strong>,<br>
-Il semblerait que votre paiement est échoué pour votre commande n°<strong>{{ order.reference }}</strong>.<br>
+    Il semblerait que votre paiement est échoué pour votre commande n°<strong>{{ order.reference }}</strong>.<br>
 
-<hr>
+    <hr>
 
 </p>
 <hr>
- <a class="btn btn-info" href="{{ path('app_order')}}">Réessayer de payer</a>
+<a class="btn btn-info" href="{{ path('app_order')}}">Réessayer de payer</a>
 
 {% endblock %}

@@ -5,30 +5,30 @@
 {% block content %}
 <div class="row">
     <div class="col-md-8">
-    <div class="column-login">
-        <h2> Contactez nous </h2>
-        <p> N'hésitez pas à contacter notre équipe, nous vous répondrons dans les meilleurs délais</p>
-        {% for message in app.flashes('notice') %}
-        <div class="alert alert-info">{{ message }}</div>
-        {% endfor %}
-        
+        <div class="column-login">
+            <h2> Contactez nous </h2>
+            <p> N'hésitez pas à contacter notre équipe, nous vous répondrons dans les meilleurs délais</p>
+            {% for message in app.flashes('notice') %}
+            <div class="alert alert-info">{{ message }}</div>
+            {% endfor %}
 
-        <hr><br>
-        {{ form_start(form) }}
-        <div>
-            {{ form_label(form.email) }}<br>
-            {{ form_widget(form.email) }}
+
+            <hr><br>
+            {{ form_start(form) }}
+            <div>
+                {{ form_label(form.email) }}<br>
+                {{ form_widget(form.email) }}
+            </div>
+            <div>
+                {{ form_label(form.objet) }}<br>
+                {{ form_widget(form.objet) }}
+            </div>
+            <div>
+                {{ form_label(form.message) }}<br>
+                {{ form_widget(form.message) }}
+            </div>
+            {{ form_end(form) }}
         </div>
-        <div>
-            {{ form_label(form.objet) }}<br>
-            {{ form_widget(form.objet) }}
-        </div>
-        <div>
-            {{ form_label(form.message) }}<br>
-            {{ form_widget(form.message) }}
-        </div>
-        {{ form_end(form) }}
-    </div>
     </div>
     <div class="col-md-4">
         <strong>RaveShop</strong>

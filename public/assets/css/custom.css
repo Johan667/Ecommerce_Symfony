@@ -406,12 +406,13 @@ article:hover {
     box-shadow: 0px 0px 2px 1px #0ad6ff;
     text-align: center;
 }
-.prix-order{
+
+.prix-order {
     padding: 1rem;
     box-shadow: 0px 0px 2px 1px #0ad6ff;
     text-align: right;
-    margin-left:80%;
-    margin-top:2rem;
+    margin-left: 80%;
+    margin-top: 2rem;
     margin-bottom: 1rem;
 
 }
@@ -606,6 +607,7 @@ img {
         display: block;
     }
 }
+
 @media screen and (max-width:800px) {
     #back {
         grid-template-columns: repeat(2, 1fr);

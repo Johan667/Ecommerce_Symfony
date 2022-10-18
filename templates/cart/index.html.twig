@@ -4,8 +4,8 @@
 
 {% block content %}
 
-  <h1 class="ml-3">Mon Panier</h1>
-  <p class="ml-3">Retrouvez les produits que vous avez ajouté à votre <em>panier</em> !</p>
+<h1 class="ml-3">Mon Panier</h1>
+<p class="ml-3">Retrouvez les produits que vous avez ajouté à votre <em>panier</em> !</p>
 <div class="panier">
   {% if cart | length > 0 %}
   {#} Si dans le panier il y à plus que 0 article{#}
@@ -34,11 +34,11 @@
         </td>
         <td>
           <a href="{{ path('delete_quantity_product', { 'id' : product.product.id })}}">
-            <i class="fa-solid fa-minus"></i> 
+            <i class="fa-solid fa-minus"></i>
           </a>
           x {{ product.quantity}}
           <a href="{{ path('add_to_cart', { 'id' : product.product.id })}}">
-           <i class="fa-solid fa-plus"></i> 
+            <i class="fa-solid fa-plus"></i>
           </a>
         </td>
         <td>{{ (product.product.price / 100) | number_format(2, ',','.') }} €</td>
@@ -62,11 +62,11 @@
     <a href="{{ path('app_order')}}" class="button-custom mt-3">Valider mon panier</a>
   </div>
 </div>
-  {% else %}
-   <small><a href="{{ path('products')}}">Commencer mon shopping</a></small>
-  <hr>
-  <h2> Oops, votre panier est vide</h2>
-  <img src="{{ asset('assets/img/panier-vide.jpg')}}" alt="panier vide" class="panier-vide">
-  {% endif %}
+{% else %}
+<small><a href="{{ path('products')}}">Commencer mon shopping</a></small>
+<hr>
+<h2> Oops, votre panier est vide</h2>
+<img src="{{ asset('assets/img/panier-vide.jpg')}}" alt="panier vide" class="panier-vide">
+{% endif %}
 
 {% endblock %}

@@ -4,50 +4,50 @@
 
 {% block content %}
 <div class="wrapper">
-<h2>Je passe ma commande</h2>
-<p>Choissisez vos préférences avant de passer commande !</p>
-<hr>
+    <h2>Je passe ma commande</h2>
+    <p>Choissisez vos préférences avant de passer commande !</p>
+    <hr>
 
-<div class="row">
-    <div class="col-md-6">
-        {% set formHtml %}
-        {{ form_start(formCommande, { action:path('order_recap') }) }}
-        {{ form_label(formCommande.addresses, 'Choisissez votre adresse de livraison ')}}
-        <a href="{{ path('app_account_address_add')}}">Ajouter une nouvelle adresse</a>
-        {{ form_end(formCommande) }}
-        {% endset %}
-        {#} Set le formulaire {#}
-        {{ formHtml | replace({'[br]':'<br>'})| raw }}
-        {#} Remplace les [br] dans le __tooString de order par des <br>
+    <div class="row">
+        <div class="col-md-6">
+            {% set formHtml %}
+            {{ form_start(formCommande, { action:path('order_recap') }) }}
+            {{ form_label(formCommande.addresses, 'Choisissez votre adresse de livraison ')}}
+            <a href="{{ path('app_account_address_add')}}">Ajouter une nouvelle adresse</a>
+            {{ form_end(formCommande) }}
+            {% endset %}
+            {#} Set le formulaire {#}
+            {{ formHtml | replace({'[br]':'<br>'})| raw }}
+            {#} Remplace les [br] dans le __tooString de order par des <br>
          pour plus d'esthetique, raw pour interpréter le html {#}
-    </div>
-    <div class="col-md-6 mt-0">
-        <div class="text-center">
-            <b>Récapitulatif de ma commande</b><br>
-            <p>Retrouvez le récapitulatif de vos produits<p>
         </div>
-        <div class="order-summary">
-            {% for key, product in cart %}
-            <div class="row {% if key > 0 %}mt-2{% endif %}">
-                <div class="col-2 mr-2">
-                    <img src="/uploads/{{ product.product.illustration }}" alt="{{ product.product.name }}"
-                        height="100px">
-                </div>
-                <div class="col-8 my-auto">
-                    <b>{{ product.product.name }}</b><br>
-                    <small>{{ product.product.description }}</small><br>
-                    x {{ product.quantity }}<br>
-                </div>
+        <div class="col-md-6 mt-0">
+            <div class="text-center">
+                <b>Récapitulatif de ma commande</b><br>
+                <p>Retrouvez le récapitulatif de vos produits<p>
+            </div>
+            <div class="order-summary">
+                {% for key, product in cart %}
+                <div class="row {% if key > 0 %}mt-2{% endif %}">
+                    <div class="col-2 mr-2">
+                        <img src="/uploads/{{ product.product.illustration }}" alt="{{ product.product.name }}"
+                            height="100px">
+                    </div>
+                    <div class="col-8 my-auto">
+                        <b>{{ product.product.name }}</b><br>
+                        <small>{{ product.product.description }}</small><br>
+                        x {{ product.quantity }}<br>
+                    </div>
 
-                <div class="col-2 my-auto">
+                    <div class="col-2 my-auto">
+
+                    </div>
+                    {% endfor %}
+                    <hr>
 
                 </div>
-                {% endfor %}
-                <hr>
-
             </div>
         </div>
     </div>
-</div>
 
     {% endblock %}

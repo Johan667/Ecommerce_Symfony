@@ -41,33 +41,34 @@
 
     </div>
   </div>
-  <strong><p class="mt-3 mb-3">Détails</p>
+  <strong>
+    <p class="mt-3 mb-3">Détails</p>
   </strong><br>
- <div class="block-client">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Produit</th>
-        <th scope="col">Quantité</th>
-        <th scope="col">Prix Unitaire</th>
-        <th scope="col">Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for product in order.orderDetails %}
-      <tr>
-        <th scope="row">{{ product.product }}</th>
-        <td>x
-          {{ product.quantity }}</td>
-        <td>{{ (product.price / 100)|number_format(2,',','.') }}
-          €</td>
-        <td>{{ (product.total / 100)|number_format(2,',','.') }}
-          €</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
+  <div class="block-client">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Produit</th>
+          <th scope="col">Quantité</th>
+          <th scope="col">Prix Unitaire</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in order.orderDetails %}
+        <tr>
+          <th scope="row">{{ product.product }}</th>
+          <td>x
+            {{ product.quantity }}</td>
+          <td>{{ (product.price / 100)|number_format(2,',','.') }}
+            €</td>
+          <td>{{ (product.total / 100)|number_format(2,',','.') }}
+            €</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
   <div class="prix-order">
     <strong>Sous-Total :</strong>
     {{ (order.gettotal / 100)|number_format(2,',','.') }}
