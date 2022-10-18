@@ -5,7 +5,18 @@
 {% block content %}
 
 <h1 class="ml-3">Mon Panier</h1>
+
 <p class="ml-3">Retrouvez les produits que vous avez ajouté à votre <em>panier</em> !</p>
+
+<div class="text-center">
+<ul class="ariane-pay"><li><span id="stronger"><i class="fa-solid fa-cart-shopping"></i></span></li>
+<li><i class="fa-solid fa-truck-fast"></i></li>
+<li><i class="fa-sharp fa-solid fa-thumbs-up"></i></li>
+<li><i class="fa-regular fa-credit-card"></i></li>
+<li><i class="fa-solid fa-face-grin-hearts"></i></li>
+</ul>
+</div>
+
 <div class="panier">
   {% if cart | length > 0 %}
   {#} Si dans le panier il y à plus que 0 article{#}

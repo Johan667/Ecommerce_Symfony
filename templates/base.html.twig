@@ -72,7 +72,7 @@
 			}
 		};
 	</script>
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
 	{#} Encodage des caractères à destination des navigateurs existe aussi (ISO-8859-1) pour HTML 4 et XHTML {#}
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -91,7 +91,7 @@
 	{#} Définit une feuille de style alternative ou une feuille de style préférée {#}
 
 	<!-- Icone onglet -->
-	<link rel="icon" href="{{ asset('assets/img/logo.png')}}" alt="logo" title="Accueil">
+	<link rel="icon" href="{{ asset('assets/img/logo.png')}}" title="Accueil">
 	{#} Asset permet de générer une url basée sur le dossier "public" de façon automatique {#}
 	{% block javascript %}
 	{% endblock %}
@@ -164,36 +164,39 @@
 	<!-- FOOTER -->
 	<footer>
 		<div class="container-footer">
-			<div id="list-footer">
+			<div class="list-footer">
 				<ul>
-					<li><a href="{{ path('app_contact')}}" alt="Contact">Contact</a></li>
-				</ul>
-			</div>
-			<div id="list-footer">
-				<ul>
-					<li><a href="{{ path('mentions')}}" alt="Mentions légale">Mentions légale</a></li>
-				</ul>
-			</div>
-			<div id="list-footer">
-				<ul>
-					<div id="list-footer">
-						<ul>
-							<li><a href="{{ path('confidentialite')}}" alt="Politique de cofidentialité">Politique de
-									cofidentialité</a></li>
-						</ul>
-					</div>
+					<li><a href="{{ path('app_contact')}}">Contact</a></li>
 				</ul>
 			</div>
 			<div class="list-footer">
-				<a target="_blank" href="https://www.facebook.com/" alt="Facebook">
+				<ul>
+					<li><a href="{{ path('mentions')}}">Mentions légale</a></li>
+				</ul>
+			</div>
+			<div class="list-footer">
+				<ul>
+					<li><a href="{{ path('cgu')}}">CGU</a></li>
+				</ul>
+			</div>
+
+
+			<div class="list-footer">
+				<ul>
+					<li><a href="{{ path('confidentialite')}}">Politique de
+							cofidentialité</a></li>
+				</ul>
+			</div>
+			<div class="list-footer">
+				<a target="_blank" href="https://www.facebook.com/">
 					<i class="fa-brands fa-facebook"></i>
 					{#} Lien externe qui s'ouvre dans un nouvel onglet grace à target _blank {#}
 				</a>
-				<a target="_blank" href="https://www.instagram.com/" alt="Instagram">
+				<a target="_blank" href="https://www.instagram.com/">
 					<i class="fa-brands fa-instagram"></i>
 				</a>
 			</div>
-			<div id="list-footer">
+			<div class="list-footer">
 				© 2022, RAVESHOP
 				<i class="fa-solid fa-heart-pulse"></i>
 			</div>

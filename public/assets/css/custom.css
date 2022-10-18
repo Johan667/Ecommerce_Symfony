@@ -104,8 +104,16 @@ header nav ul li a:hover {
     margin: 5px 2px;
 }
 
+#cgu{
+   margin-left: 98%;
+}
+
 .fa:hover {
     opacity: 0.7;
+}
+.fa-star-of-life{
+    color:#ff5aac
+
 }
 
 .fa-facebook {
@@ -124,6 +132,12 @@ header nav ul li a:hover {
 
 .fa-star {
     color: gold;
+}
+.fa-cart-shopping, .fa-truck-fast, .fa-thumbs-up, .fa-credit-card{
+    color:#0ad6ff;
+}
+.fa-face-grin-hearts{
+    color:#ff5aac;
 }
 
 .button-custom {
@@ -265,6 +279,21 @@ article:hover {
     z-index: 3;
 }
 
+.ariane-pay{
+    list-style: none;
+}
+
+.ariane-pay li{
+    display: inline;
+    font-size: 1,5rem;
+    padding-left: 1rem;
+    padding-right:1rem;
+}
+
+#stronger{
+    font-size: 2rem;
+}
+
 /* Login */
 
 .block-small {
@@ -300,6 +329,10 @@ article:hover {
     font-size: 14px;
     display: block;
     font-weight: bold;
+}
+
+.img-prod{
+    max-height: 100px;
 }
 
 /* Mon compte */
@@ -430,19 +463,19 @@ article:hover {
 
 }
 
-#list-footer ul li {
+.list-footer ul li {
     list-style-type: none;
     text-decoration: none;
     text-transform: uppercase;
 
 }
 
-#list-footer ul li a {
+.list-footer ul li a {
     text-decoration: none;
     color: white;
 }
 
-#list-footer ul li a:hover {
+.list-footer ul li a:hover {
     text-decoration: underline;
     text-decoration-color: #0ad6ff;
 }

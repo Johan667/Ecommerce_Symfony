@@ -1,14 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block javascript %}
-<script src="https://js.stripe.com/v3/"></script>
-<script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
-{% endblock %}
+
 {% block title %}RaveShop - Valider ma commande{% endblock %}
 
 {% block content %}
-<div class="wrapper mb-3 mt-3">
+
+<div class="wrapper">
     <h2>RaveShop - Commande</h2>
+    <ul class="ariane-pay">
+        <li><i class="fa-solid fa-cart-shopping"></i></li>
+        <li><i class="fa-solid fa-truck-fast"></i></li>
+        <li><span id="stronger"><i class="fa-sharp fa-solid fa-thumbs-up"></i></span></li>
+        <li><i class="fa-regular fa-credit-card"></i></li>
+        <li><i class="fa-solid fa-face-grin-hearts"></i></li>
+    </ul>
     <hr>
     <div class="row">
         <div class="col-md-6">
@@ -36,7 +41,7 @@
                 <div class="row">
                     <div class="col-2">
                         <img src="/uploads/{{ product.product.illustration }}" alt="{{ product.product.name }}"
-                            height="100px">
+                            class="img-prod">
                     </div>
                     <div class="col-8 my-auto">
                         <b>{{ product.product.name }}</b><br>
@@ -52,17 +57,17 @@
 
                     {% set total = total + (product.product.price * product.quantity) %}
                     {% endfor %}
-                
-                <div class="recap-prix"><strong>Sous-Total: </strong>{{ (total / 100) | number_format(2, ',','.') }} €<br>
-                    <strong>Livraison: </strong>{{ (career.price / 100) | number_format(2, ',','.') }} €<br>
-                    <strong>Total: </strong>{{ ((total / 100) + (career.price / 100))| number_format(2, ',','.') }}
-                    €<br>
-                </div>
 
-                <a href="{{ path('stripe_create_session', {'reference': reference}) }}"
-                    class="btn btn-success btn-block mt-3" id="checkout-button">Payer |
-                    <b>{{ ((total / 100) + (career.price / 100))| number_format(2, ',','.') }} €</b></a>
-                </form>
+                    <div class="recap-prix"><strong>Sous-Total: </strong>{{ (total / 100) | number_format(2, ',','.') }}
+                        €<br>
+                        <strong>Livraison: </strong>{{ (career.price / 100) | number_format(2, ',','.') }} €<br>
+                        <strong>Total: </strong>{{ ((total / 100) + (career.price / 100))| number_format(2, ',','.') }}
+                        €<br>
+                    </div>
+
+                    <a href="{{ path('stripe_create_session', {'reference': reference}) }}"
+                        class="btn btn-success btn-block mt-3" id="checkout-button">Payer |
+                        <b>{{ ((total / 100) + (career.price / 100))| number_format(2, ',','.') }} €</b></a>
                 </div>
             </div>
         </div>
@@ -70,16 +75,13 @@
 
     </div>
 </div>
-</div>
 
-
-
-{% endblock %}
 
 {% block script %}
-<script type="text/javascript">
+<script>
     var stripe = Stripe(
-        'sk_test_51L6amqAgDjI611jf49n3RURuEVn6KbawPxt0CKby4wsENM9plWmKeqkq7Cm3Sl1W4JcvjewbvVCBrwyA5knu6b2500QdV5lalL');
+        'sk_test_51L6amqAgDjI611jf49n3RURuEVn6KbawPxt0CKby4wsENM9plWmKeqkq7Cm3Sl1W4JcvjewbvVCBrwyA5knu6b2500QdV5lalL'
+        );
     var checkoutButton = document.getElementById("checkout-button");
 
     checkoutButton.addEventListener("click", function ()) {
@@ -107,5 +109,7 @@
         });
     });
 </script>
-
+<script src="https://js.stripe.com/v3/"></script>
+<script src="https://kit.fontawesome.com/3f1f47ed70.js" crossorigin="anonymous"></script>
+{% endblock %}
 {% endblock %}

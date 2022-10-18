@@ -82,7 +82,7 @@ class RegisterType extends AbstractType
                 ],
             ])
             ->add('CGU', CheckboxType::class, [
-                'label' => "En cochant cette case vous accepter nos Conditions général d'utilisation",
+                'label' => "J'accepte les CGU *",
                 'mapped' => false,
                 'required' => true,
             ])

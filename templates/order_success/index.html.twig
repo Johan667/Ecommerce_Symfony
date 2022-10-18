@@ -5,6 +5,13 @@
 {% block content %}
 <div class="vh text-center">
     <h2>Confirmation de commande</h2>
+    <ul class="ariane-pay">
+        <li><i class="fa-solid fa-cart-shopping"></i></li>
+        <li><i class="fa-solid fa-truck-fast"></i></li>
+        <li><i class="fa-sharp fa-solid fa-thumbs-up"></i></li>
+        <li><i class="fa-regular fa-credit-card"></i></li>
+        <li><span id="stronger"><i class="fa-solid fa-face-grin-hearts"></i></span></li>
+    </ul>
     <p> Bonjour<strong>{{ order.user.firstname }} {{ order.user.lastname }}</strong>,<br>
         Nous vous remercions pour votre commande n°<strong>{{ order.reference }}</strong>.<br>
 
