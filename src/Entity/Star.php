@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\StarRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * @ORM\Table( name="star")
@@ -32,7 +33,7 @@ class Star
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="star")
-     * @ORM\JoinColumn(nullable=false)
+     * @JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $user;
 

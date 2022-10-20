@@ -446,7 +446,6 @@ article:hover {
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
-
 /* --- FOOTER --- */
 
 .container-footer {
@@ -476,7 +475,6 @@ article:hover {
 }
 
 /** HOME **/
-
 .news {
     max-width: 1000px;
     margin-top: 2rem;
@@ -506,11 +504,9 @@ article:hover {
     text-transform: uppercase;
 }
 
-
 img {
     width: 100%;
 }
-
 .card-cat:hover img {
     /* L'image est grossie de 10% */
     -webkit-transform: scale(1.10);
@@ -643,6 +639,7 @@ img {
     .card-cat {
         padding: 2em;
     }
+
 }
 
 @media screen and (max-width:500px) {
@@ -652,6 +649,9 @@ img {
 
     .card-cat {
         padding: 2em;
+    }
+    .fa-facebook{
+        display: none;
     }
 }
 
@@ -664,4 +664,5 @@ img {
         padding: 20px;
         bottom: 0;
     }
+
 }
