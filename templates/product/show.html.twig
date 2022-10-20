@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}RaveShop -
+{% block title %}RaveShop |
 {{ product.name }}
 {% endblock %}
 
@@ -47,6 +47,8 @@
 			{{ stars.note }} &nbsp; <i class="fa-solid fa-star"></i><br>
 			{% endif %}
 			{% endif %}
+			<a href="{{ path('add_wishlist', {'idProduct': product.id}) }}" title=" ajouter à la wishlist"><i class="fa-solid fa-heart-pulse"> </i>+
+			</a>
 			<p>{{ product.subtitle }}</p>
 			<p>{{ product.description }}</p>
 			<span class="product-show-price">{{ (product.price / 100) | number_format(2, ',','.') }}€</span><br>

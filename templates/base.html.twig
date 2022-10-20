@@ -78,10 +78,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	{#} Zone de la fenêtre dans laquelle le contenu web peut être vu {#}
 
-	<meta name="description" content="Boutique en ligne vêtements et accessoires">
+	<meta name="description" content="Boutique en ligne vêtements et accessoires, Créez ta tenue originale pour préparer ta prochaine rave ou festival.  Achetez un design unique pour hommes et femmes.">
 	{#} Balise meta description permets d'informer les moteurs de recherche ainsi que les internautes du contenu de la page indexer (mots clefs) {#}
 	<title>
-		{% block title %}RaveShop - Positive Attitude
+		{% block title %}RaveShop |  Positive Attitude
 		{% endblock %}
 	</title>
 
@@ -126,7 +126,7 @@
 				{% if is_granted("ROLE_ADMIN") %}
 				{#} Si l'utilisateur à le role d'Administrateur {#}
 				<li>
-					<a href="{{ path('admin') }}" target="_blank">ADMIN</a>
+					<a href="{{ path('admin') }}" target="_blank">ꓥDMIN</a>
 				</li>
 				{% endif %}
 				<li>
@@ -136,6 +136,12 @@
 						{#} On appelle le cart service pour afficher le nombre de produit dans le panier garce à la fonction CartQuantity{#}
 					</a>
 				</li>
+				{% if app.user %}
+				<li>
+					<a href="{{ path('app_wishlist') }}" title="wishlist"><i class="fa-solid fa-heart-pulse"></i>
+					</a>
+				</li>
+				{% endif %}
 				<li>
 					<a href="{{ path('app_account') }}">Mon compte
 						<small>({{ app.user.firstname }})</small>
@@ -197,7 +203,7 @@
 				</a>
 			</div>
 			<div class="list-footer">
-				© 2022, RAVESHOP
+				© 2022, RꓥVESHOP
 				<i class="fa-solid fa-heart-pulse"></i>
 			</div>
 		</div>

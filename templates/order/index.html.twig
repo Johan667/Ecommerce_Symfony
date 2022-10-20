@@ -1,18 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}RaveShop - Valider ma commande{% endblock %}
+{% block title %}RaveShop | Valider ma commande{% endblock %}
 
 {% block content %}
 <div class="wrapper">
-    <h2>Je passe ma commande</h2>
+    <h2 class="mt-3">Je passe ma commande</h2>
     <p>Choissisez vos préférences avant de passer commande !</p>
 
-<ul class="ariane-pay"><li><i class="fa-solid fa-cart-shopping"></i></li>
-<li><span id="stronger"><i class="fa-solid fa-truck-fast"></i></span></li>
-<li><i class="fa-sharp fa-solid fa-thumbs-up"></i></li>
-<li><i class="fa-regular fa-credit-card"></i></li>
-<li><i class="fa-solid fa-face-grin-hearts"></i></li>
-</ul>
+    <ul class="ariane-pay">
+        <li><i class="fa-solid fa-cart-shopping"></i></li>
+        <li><span id="stronger"><i class="fa-solid fa-truck-fast"></i></span></li>
+        <li><i class="fa-sharp fa-solid fa-thumbs-up"></i></li>
+        <li><i class="fa-regular fa-credit-card"></i></li>
+        <li><i class="fa-solid fa-face-grin-hearts"></i></li>
+    </ul>
     <hr>
     <div class="row">
         <div class="col-md-6">
@@ -50,10 +51,10 @@
                     </div>
                     {% endfor %}
                     <hr>
-
                 </div>
             </div>
         </div>
     </div>
+</div>
 
     {% endblock %}
