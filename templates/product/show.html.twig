@@ -73,7 +73,7 @@
 						<div class="modal-body">
 							{% for comment in commentsList %}
 							<p class="p-auto"><i class="fa-solid fa-circle-user"></i>
-								<strong>{% if comment.users is null %} Profil supprimer
+								<strong>{% if comment.users is null %} <small>Profil supprimé<small>
 									{#} Anonymisation -> Si l'id de l'utilisateur est nul on indique que le profil est supprimer {#}
 									{% else %}
 									{{ comment.users.fullName }}</strong>

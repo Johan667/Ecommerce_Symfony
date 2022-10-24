@@ -2,86 +2,17 @@
 <html lang="fr">
 
 <head>
-	<script src="/tarteaucitron/tarteaucitron.js"></script>
-	<script type="text/javascript">
-		var tarteaucitronForceLanguage = "fr";
-	</script>
-	<script type="text/javascript">
-		tarteaucitron.init({
-			"privacyUrl": "confidentialite",
-			/* URL page mentions */
-			"hashtag": "#tarteaucitron",
-			/* Ouvrir le panneau du hashtag */
-			"cookieName": "tarteaucitron",
-			/* Nom du cookie */
-			"orientation": "middle",
-			/* Position banniere (top - bottom) */
-			"groupServices": false,
-			/* Groupe les services par categories */
-			"showAlertSmall": false,
-			/* Petite alerte en bas a droite */
-			"cookieslist": false,
-			/* Montre la liste des cookies */
-			"closePopup": false,
-			/* Fermer le popup */
-			"showIcon": true,
-			/* Montrer l'icone cookie */
-			// "iconSrc": "", /* Optionnel: URL ou base64 image encodé */
-			"iconPosition": "BottomLeft",
-			/* BottomRight, BottomLeft, TopRight and TopLeft */
-			"adblocker": false,
-			/* Detecte AD block */
-			"DenyAllCta": true,
-			/* Montre le bouton refuser tout */
-			"AcceptAllCta": true,
-			/* Montre accepter tout */
-			"highPrivacy": true,
-			/* Desactive le contenu automatique */
-			"handleBrowserDNTRequest": false,
-			/* If Do Not Track == 1, disallow all */
-			"removeCredit": true,
-			/* Retire le lien vers tarteaucitron */
-			"moreInfoLink": true,
-			/* Lien Plus d'infos */
-			"useExternalCss": false,
-			/* Si faut le CSS externe sera charger */
-			"useExternalJs": false,
-			/* Si faut le JS externe sera charger */
-			// "cookieDomain": ".my-multisite-domaine.fr", /* Partage les cookies sur un multidomaine */
-			"readmoreLink": "",
-			/* Changer le lien "lire plus"*/
-			"mandatory": true,
-			/* Montre un message a propose des cookies "mandatory" */
-		});
-		tarteaucitron.services.mycustomservice = {
-			"key": "mycustomservice",
-			"type": "ads|analytic|api|comment|other|social|support|video",
-			"name": "MyCustomService",
-			"needConsent": true,
-			"cookies": [
-				'cookie', 'cookie2'
-			],
-			"readmoreLink": "/custom_read_more", // If you want to change readmore link
-			"js": function () {
-				"use strict";
-				// When user allow cookie
-			},
-			"fallback": function () {
-				"use strict";
-				// when use deny cookie
-			}
-		};
-	</script>
 	<meta charset="UTF-8">
 	{#} Encodage des caractères à destination des navigateurs existe aussi (ISO-8859-1) pour HTML 4 et XHTML {#}
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	{#} Zone de la fenêtre dans laquelle le contenu web peut être vu {#}
 
-	<meta name="description" content="Boutique en ligne vêtements et accessoires, Créez ta tenue originale pour préparer ta prochaine rave ou festival.  Achetez un design unique pour hommes et femmes.">
+	<meta name="description"
+		content="Boutique en ligne vêtements et accessoires, Créez ta tenue originale pour préparer ta prochaine rave ou festival.  Achetez un design unique pour hommes et femmes.">
 	{#} Balise meta description permets d'informer les moteurs de recherche ainsi que les internautes du contenu de la page indexer (mots clefs) {#}
 	<title>
-		{% block title %}RaveShop |  Positive Attitude
+		{% block title %}RaveShop | Positive Attitude
 		{% endblock %}
 	</title>
 
@@ -99,7 +30,6 @@
 </head>
 
 <body>
-
 	<header>
 		<nav>
 			<div>
@@ -151,9 +81,7 @@
 		{% for message in app.flashes("message") %}
 
 		<div class="alert alert-success alert-dismissible fade show" role="alert">
-
 			{{message}}
-
 		</div>
 
 		{% endfor %}
@@ -187,29 +115,36 @@
 							cofidentialité</a></li>
 				</ul>
 			</div>
-			<div class="list-footer">
-				<a target="_blank" href="https://www.facebook.com/">
-					<i class="fa-brands fa-facebook"></i>
-					{#} Lien externe qui s'ouvre dans un nouvel onglet grace à target _blank {#}
-				</a>
-				<a target="_blank" href="https://www.instagram.com/">
-					<i class="fa-brands fa-instagram"></i>
-				</a>
-			</div>
-			<div class="list-footer">
-				© 2022, RꓥVESHOP
-				<i class="fa-solid fa-heart-pulse"></i>
+			<div class="black">
+				<div class="list-footer">
+					<a target="_blank" href="https://www.facebook.com/">
+						<i class="fa-brands fa-facebook"></i>
+						{#} Lien externe qui s'ouvre dans un nouvel onglet grace à target _blank {#}
+					</a>
+					<a target="_blank" href="https://www.instagram.com/">
+						<i class="fa-brands fa-instagram"></i>
+					</a>
+				</div>
+				<div class="list-footer">
+					© 2022, RꓥVESHOP
+					<i class="fa-solid fa-heart-pulse"></i>
+				</div>
 			</div>
 		</div>
 	</footer>
-
-
 </body>
+
 {% block script %}
+<script type="text/javascript">
+    var tarteaucitronForceLanguage = "fr";
+</script>
+<script src="/tarteaucitron/tarteaucitron.js"></script>
+<script src="{{ asset('assets/js/tarteaucitron.js') }}"></script>
 <script src="https://kit.fontawesome.com/3f1f47ed70.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="{{ asset('assets/js/bootstrap.bundle.js')}}"></script>
 <script src="{{ asset('assets/js/script.js') }}"></script>
+
 {% endblock %}
 
 </html>

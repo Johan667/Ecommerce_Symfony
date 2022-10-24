@@ -9,6 +9,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 
+// Utilisation des événements pour déclencher les contrôles de sécurité à l’aide d’un EventSubscriber
+
 class EasyAdminSubscriber implements EventSubscriberInterface
 {
     private $appKernel;

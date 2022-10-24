@@ -4,7 +4,7 @@
 
 {#} VIDEO D'ACCUEIL {#}
 
-<div class="contenant">
+<section class="contenant">
         <a href="{{ path('products')}}">
                 <video id="background-video" preload="auto" autoplay loop muted>
                         {#} preload: auto -> le fichier entier peut être téléchargé, même si l'utilisateur ne s'en sert pas {#}
@@ -12,7 +12,7 @@
                         <source src="{{ asset('assets/img/home2.mp4') }}" type="video/mp4">
                 </video>
         </a>
-</div>
+</section>
 
 {#} NEWSLETTER {#}
 
@@ -37,7 +37,7 @@
 
 <h2 class="title-h2"> Nos rayons</h2>
 <p id="p-home"> Découvrez les articles par rayons<p>
-                <div id="back">
+                <section id="back">
                         <div class="card-cat">
                                 <a href="{{path('produit_categorie',{'id':6})}}">
                                         {#} J'indique dans le chemin qu'on souhaite afficher la catégorie ayant l'ID numéo 6 {#}
@@ -68,10 +68,10 @@
                                 </a>
                                 <div class="centered">Tshirt</div>
                         </div>
-                </div>
+                </section>
 
                 {#} NOUVEAUTES {#}
-                <div class="news">
+                <section class="news">
                         <h2 class="title-h2">Nos nouveautés</h2>
                         <p id="p-home"> Découvrez les articles sortie récemment<p>
                                         <div class="home-container">
@@ -81,25 +81,25 @@
                                                 {% include 'product/single_product.html.twig' %}
                                                 {% endfor %}
                                         </div>
-                </div>
+                </section>
 
                 {#} BANNIERE ACCESSOIRE {#}
 
-                <div id="banner"> 
+                <section id="banner"> 
                         <h1>Découvrez nos accessoires</h1>
                         <p>Peinture néon, paillettes, bijoux, l'originalité c'est par ici</p>
                         <a href="{{path('produit_categorie',{'id':4})}}">Allez voir</a>
-                </div>
+                </section>
 
                 {#} A PROPOS DE NOUS {#}
 
-                <div class="about-us">
+                <section class="about-us">
                         <h2> À propos de nous </h2>
                         Bienvenue chez Rave Shop, votre <strong>boutique en ligne<strong> numéro un qui vous offre les
                                         meilleurs
                                         produits.
                                         Vous pouvez choisir parmi les meilleurs <em>vêtements et accessoires<em> de
                                                         notre offre.
-                </div>
+                </section>
 
                 {% endblock %}

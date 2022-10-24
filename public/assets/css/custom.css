@@ -586,6 +586,9 @@ img {
     padding-bottom: 14px;
     box-shadow: #0ad6ff -10px 2px 11px;
 }
+.black{
+    background-color: #020202;
+}
 
 .panier-vide {
     max-width: 600px;
@@ -594,12 +597,10 @@ img {
 }
 
 /** Responsive **/
-
 @media screen and (min-width:820px) {
     #burger {
         display: none;
     }
-
 }
 
 @media screen and (max-width:820px) {
@@ -639,7 +640,6 @@ img {
     .card-cat {
         padding: 2em;
     }
-
 }
 
 @media screen and (max-width:500px) {
@@ -650,7 +650,7 @@ img {
     .card-cat {
         padding: 2em;
     }
-    .fa-facebook{
+    .fa-instagram{
         display: none;
     }
 }
@@ -664,5 +664,4 @@ img {
         padding: 20px;
         bottom: 0;
     }
-
 }
