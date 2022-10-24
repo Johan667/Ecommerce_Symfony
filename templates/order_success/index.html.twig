@@ -12,10 +12,10 @@
         <li><i class="fa-regular fa-credit-card"></i></li>
         <li><span id="stronger"><i class="fa-solid fa-face-grin-hearts"></i></span></li>
     </ul>
-    <p> Bonjour<strong>{{ order.user.firstname }} {{ order.user.lastname }}</strong>,<br>
+    <p> Félicitation !<strong> {{ order.user.firstname }} {{ order.user.lastname }}</strong>,<br>
         Nous vous remercions pour votre commande n°<strong>{{ order.reference }}</strong>.<br>
 
-        Une confirmation vient de vous être envoyée par email à l'adresse <strong>{{ order.user.email }}</strong><br>
+        Votre facture est disponible et téléchargeable dans votre espace <a href="{{ path('app_account_order')}}">ici</a><br>
 
         <hr>
         Votre commande sera livrée par {{ order.careerName }} à l'adresse suivante :<br>

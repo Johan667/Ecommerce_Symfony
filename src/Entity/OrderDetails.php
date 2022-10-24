@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\OrderDetailsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * @ORM\Entity(repositoryClass=OrderDetailsRepository::class)
@@ -19,7 +20,7 @@ class OrderDetails
 
     /**
      * @ORM\ManyToOne(targetEntity=Order::class, inversedBy="orderDetails")
-     * @ORM\JoinColumn(nullable=false)
+     * @JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $myOrder;
 

@@ -59,6 +59,8 @@ class RegisterController extends AbstractController
         ;
             $mailer->send($mail);
             $this->addFlash('notice', 'Merci pour votre inscription ! ');
+
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('register/index.html.twig', [

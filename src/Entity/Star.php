@@ -33,7 +33,7 @@ class Star
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="star")
-     * @JoinColumn(nullable=true, onDelete="SET NULL")
+     * @JoinColumn(nullable=true, onDelete="CASCADE")
      */
     private $user;
 

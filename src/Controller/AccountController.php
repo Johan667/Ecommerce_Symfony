@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,11 +29,18 @@ class AccountController extends AbstractController
     /**
      * @Route("/compte/supprimer", name="delete_account")
      */
-    public function deleteAcount()
+    public function deleteAccount()
     {
         $user = $this->getUser();
+        $orders = $this->entityManager->getRepository(Order::class)->findAll($this->getUser());
+
+        foreach ($orders as $value) {
+            $value->setUser(null);
+        }
+
         $newSession = new Session();
         $newSession->invalidate();
+
         $this->entityManager->remove($user);
         $this->entityManager->flush();
 

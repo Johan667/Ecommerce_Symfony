@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AddressRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * @ORM\Entity(repositoryClass=AddressRepository::class)
@@ -19,7 +20,7 @@ class Address
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="addresses")
-     * @ORM\JoinColumn(nullable=false)
+     * @JoinColumn(nullable=true, onDelete="CASCADE")
      */
     private $user;
 

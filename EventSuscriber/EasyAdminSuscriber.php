@@ -48,8 +48,6 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         move_uploaded_file($tmp_name, $project_directory.'/public/uploads'.$filename.'.'.$extension);
         // Change de repertoire le fichier uploadé
 
-        dd($tmp_name);
-
         $entity->setIllustration($filename.'.'.$extension);
         // Stock le nom et l'extension en bdd
     }
